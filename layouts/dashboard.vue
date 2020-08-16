@@ -1,7 +1,7 @@
 <template>
   <theme-provider :theme="{ ...theme }">
     <global-styles />
-    <layout-container :use-background="false">
+    <layout-container>
       <dashboard-container>
         <nav-sidebar />
         <Nuxt />
@@ -11,7 +11,7 @@
 </template>
 <script>
 import { ThemeProvider } from 'vue-styled-components'
-import NavSidebar from '../components/Nav/Sidebar'
+import NavSidebar from '../components/Nav/Sidebar/Index'
 import LayoutContainer from '../components/Layout/Container'
 
 import GlobalStyles from '../components/global'

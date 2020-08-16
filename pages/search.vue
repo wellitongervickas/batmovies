@@ -1,12 +1,12 @@
 <template>
   <div>
-    im welcome
+    im search
   </div>
 </template>
 
 <script>
 export default {
   layout: 'dashboard',
-  name: 'Welcome',
+  name: 'Search',
 }
 </script>
