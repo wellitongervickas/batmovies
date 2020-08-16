@@ -365,3 +365,68 @@ export const moviesWeek = {
   total_pages: 1000,
   total_results: 20000,
 }
+
+export const singleMovie = {
+  adult: false,
+  backdrop_path: '/qVygtf2vU15L2yKS4Ke44U4oMdD.jpg',
+  belongs_to_collection: null,
+  budget: 0,
+  genres: [
+    {
+      id: 28,
+      name: 'Action',
+    },
+    {
+      id: 80,
+      name: 'Crime',
+    },
+    {
+      id: 878,
+      name: 'Science Fiction',
+    },
+  ],
+  homepage: 'http://www.netflix.com/projectpower',
+  id: 605116,
+  imdb_id: 'tt7550000',
+  original_language: 'en',
+  original_title: 'Project Power',
+  overview:
+    'An ex-soldier, a teen and a cop collide in New Orleans as they hunt for the source behind a dangerous new pill that grants users temporary superpowers.',
+  popularity: 98.969,
+  poster_path: '/fjCezXiQWfGuNf4t7LruKky7kwV.jpg',
+  production_companies: [
+    {
+      id: 102118,
+      logo_path: null,
+      name: 'Screen Arcade',
+      origin_country: 'US',
+    },
+    {
+      id: 71895,
+      logo_path: null,
+      name: 'Supermarché',
+      origin_country: 'US',
+    },
+  ],
+  production_countries: [
+    {
+      iso_3166_1: 'US',
+      name: 'United States of America',
+    },
+  ],
+  release_date: '2020-08-14',
+  revenue: 0,
+  runtime: 113,
+  spoken_languages: [
+    {
+      iso_639_1: 'en',
+      name: 'English',
+    },
+  ],
+  status: 'Released',
+  tagline: 'What would you risk for five minutes of pure power?',
+  title: 'Project Power',
+  video: false,
+  vote_average: 6.8,
+  vote_count: 255,
+}

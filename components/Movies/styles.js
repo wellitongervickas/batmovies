@@ -11,6 +11,7 @@ export const moviesContainer = styled.div`
   @media screen and (max-width: ${({ theme }) => theme.breakPointMobile}) {
     grid-template-columns: 1fr;
     max-width: 225px;
+    text-align: center;
   }
 
   @media (min-width: ${({ theme }) =>
@@ -22,6 +23,7 @@ export const moviesContainer = styled.div`
 `
 
 export const movieContainer = styled.div`
+  position: relative;
   background-color: ${({ theme }) => theme.black};
   overflow: hidden;
   border: 2px solid ${({ theme }) => theme.black};
@@ -43,4 +45,17 @@ export const movieContainer = styled.div`
     transform: scale(1.1);
     object-fit: cover;
   }
+`
+
+export const movieDetails = styled.div`
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 0.6rem;
+  border-radius: 0.6rem;
+
+  font-size: ${({ theme }) => theme.fontSmall};
+
+  color: ${({ theme }) => theme.secondary};
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
 `

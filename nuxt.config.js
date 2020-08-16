@@ -4,6 +4,7 @@ export default {
     appApiKey: process.env.APP_API_KEY,
     appApiUrl: process.env.APP_API_URL,
     appApiThumbPath: process.env.APP_API_THUMB_PATH,
+    appApiThumbPathBig: process.env.APP_API_THUMB_PATH_BIG,
   },
   /*
    ** Nuxt rendering mode
