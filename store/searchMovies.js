@@ -1,13 +1,12 @@
-const initialState = {
+export const state = () => ({
   loading: false,
   results: [],
-}
-
-export const state = () => ({ ...initialState })
+})
 
 export const mutations = {
   clear: (state) => {
-    state = { ...initialState }
+    state.results = []
+    state.loading = false
   },
   loading: (state, bool) => {
     state.loading = bool

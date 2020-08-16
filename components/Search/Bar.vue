@@ -2,10 +2,10 @@
   <div>
     <search-bar-container>
       <search-bar-field>
-        <form-input :field="field" />
+        <form-input :field="field" @change="onChange" />
       </search-bar-field>
       <search-bar-button>
-        <form-button icon="search" />
+        <form-button icon="search" @click="onSubmit" />
       </search-bar-button>
     </search-bar-container>
   </div>
@@ -37,6 +37,11 @@ export default {
       default: 'Type a search',
     },
   },
+  data() {
+    return {
+      query: '',
+    }
+  },
   computed: {
     field() {
       return {
@@ -45,6 +50,19 @@ export default {
         type: 'text',
         placeholder: this.placeholder,
       }
+    },
+  },
+  methods: {
+    onChange(value) {
+      this.query = value
+    },
+
+    onSubmit() {
+      this.submit(this.query)
+    },
+
+    submit(value) {
+      this.$emit('submit', value)
     },
   },
 }

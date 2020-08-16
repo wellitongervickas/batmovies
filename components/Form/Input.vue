@@ -9,6 +9,8 @@
       :name="field.id"
       :placeholder="field.placeholder"
       :type="field.type"
+      @input="onInput"
+      @change="onChange"
     />
   </field-container>
 </template>
@@ -26,12 +28,33 @@ export default {
       default: () => {},
     },
   },
+  data() {
+    return {
+      value: '',
+    }
+  },
   methods: {
     isRequired(field) {
       return (
         field.validations &&
         field.validations.find((validation) => validation.type === 'blank')
       )
+    },
+
+    onInput(e) {
+      this.input(e.target.value)
+    },
+
+    onChange(e) {
+      this.change(e.target.value)
+    },
+
+    change(value) {
+      this.$emit('change', value)
+    },
+
+    input(value) {
+      this.$emit('input', value)
     },
   },
 }

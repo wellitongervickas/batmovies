@@ -1,5 +1,5 @@
 <template>
-  <button-container>
+  <button-container @click="onClick">
     <component :is="type" v-bind="options">
       <slot />
       <font-awesome-icon v-if="icon" :icon="icon" />
@@ -43,6 +43,15 @@ export default {
       }
 
       return 'button'
+    },
+  },
+  methods: {
+    onClick() {
+      this.click()
+    },
+
+    click() {
+      this.$emit('click')
     },
   },
 }

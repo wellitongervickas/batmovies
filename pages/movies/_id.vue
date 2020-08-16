@@ -77,6 +77,9 @@ export default {
       return this.$store.state.movieDetails.movie
     },
   },
+  beforeMount() {
+    this.$store.commit('movieDetails/clear')
+  },
   mounted() {
     this.$store.commit('movieDetails/clear')
     this.getMovie(this.$route.params.id)

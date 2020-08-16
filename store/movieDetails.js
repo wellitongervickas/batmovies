@@ -1,15 +1,12 @@
-const initialState = {
+export const state = () => ({
   loading: false,
   movie: null,
-}
-
-export const state = () => ({
-  ...initialState,
 })
 
 export const mutations = {
   clear: (state) => {
-    state = { ...initialState }
+    state.loading = false
+    state.movie = null
   },
   loading: (state, bool) => {
     state.loading = bool

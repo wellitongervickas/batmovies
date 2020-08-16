@@ -5,10 +5,11 @@
         <search-bar
           title="Search"
           placeholder="Search a movie, tv show or whatever"
+          @submit="onSubmitQuery"
         />
       </search-container>
       <sub-heading icon="list-ul">Results</sub-heading>
-      <movies-list :movies="movies" />
+      <movies-list :movies="movies" :loading="loading" />
     </div>
   </div>
 </template>
@@ -34,15 +35,21 @@ export default {
     movies() {
       return this.$store.state.searchMovies.results
     },
+    loading() {
+      return this.$store.state.searchMovies.loading
+    },
+  },
+  beforeMount() {
+    this.$store.commit('searchMovies/clear')
   },
   mounted() {
     this.$store.commit('searchMovies/clear')
-
-    setTimeout(() => {
-      this.searchMovies('marvel')
-    }, 5000)
   },
   methods: {
+    onSubmitQuery(value) {
+      this.searchMovies(value)
+    },
+
     searchMovies(query) {
       this.$store.dispatch('searchMovies/search', query)
     },

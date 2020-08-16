@@ -26,8 +26,10 @@ export default {
       return this.$store.state.trendingMovies.list
     },
   },
-  mounted() {
+  beforeMount() {
     this.$store.commit('trendingMovies/clear')
+  },
+  mounted() {
     this.getMovies()
   },
   methods: {
