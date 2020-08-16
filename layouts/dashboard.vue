@@ -5,6 +5,7 @@
       <dashboard-container>
         <nav-sidebar />
         <dashboard-content>
+          <dashboard-greeting>Welcome, welliton!</dashboard-greeting>
           <Nuxt />
         </dashboard-content>
       </dashboard-container>
@@ -32,6 +33,7 @@ export default {
 
     DashboardContainer: styles.container,
     DashboardContent: styles.content,
+    DashboardGreeting: styles.greeting,
   },
   data() {
     return {

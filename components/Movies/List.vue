@@ -1,6 +1,9 @@
 <template>
-  <movies-container>
+  <movies-container v-if="movies.length">
     <movies-item v-for="movie in movies" :key="movie.id" :movie="movie" />
+  </movies-container>
+  <movies-container v-else>
+    No movies to show yet!
   </movies-container>
 </template>
 

@@ -16,4 +16,9 @@ export const content = styled.div`
   overflow-y: auto;
 `
 
+export const greeting = styled.h4`
+  margin-bottom: 2rem;
+  color: ${({ theme }) => theme.gray};
+`
+
 export default container

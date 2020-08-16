@@ -17,6 +17,9 @@ export const fields = styled.div`
 `
 
 export const fieldContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+
   label {
     color: ${({ theme }) => theme.secondary};
     display: block;
@@ -28,6 +31,9 @@ export const fieldContainer = styled.div`
   }
 
   input {
+    appearance: none;
+    min-width: 0;
+    max-width: 100%;
     color: ${({ theme }) => theme.secondary};
     outline: none;
     background-color: rgba(0, 0, 0, 0.5);
@@ -47,6 +53,7 @@ export const fieldContainer = styled.div`
 export const buttonContainer = styled.div`
   button,
   a {
+    line-height: 1.4rem;
     font-size: ${({ theme }) => theme.fontSize};
     color: ${({ theme }) => theme.secondary};
     text-align: center;
