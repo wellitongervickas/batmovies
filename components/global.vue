@@ -8,9 +8,19 @@ import { injectGlobal } from 'vue-styled-components'
 import { defaultTheme } from '../helpers/themes'
 
 injectGlobal`
+  html {
+    scroll-behavior: smooth;
+  }
+
   html, body, #__nuxt, #__layout {
     width: 100%;
     height: 100%;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    border-box: box-sizing;
   }
 
   body {

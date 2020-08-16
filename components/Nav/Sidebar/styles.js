@@ -7,6 +7,11 @@ export const container = styled.div`
   justify-content: space-between;
 
   a {
+    width: 86%;
+
+    border-right: 6px solid transparent;
+    transition: 0.6s;
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -21,6 +26,14 @@ export const container = styled.div`
       font-size: ${({ theme }) => theme.fontBiggest};
     }
   }
+
+  .nuxt-link-active {
+    border-right: 6px solid ${({ theme }) => theme.primary};
+
+    @media screen and (max-width: ${({ theme }) => theme.breakPointMobile}) {
+      width: 76%;
+    }
+  }
 `
 export const content = styled.div`
   display: flex;
@@ -31,4 +44,6 @@ export const content = styled.div`
 
 export const sidebarLogo = styled.div`
   background-color: rgba(0, 0, 0, 0.2);
+  margin: 0.6rem;
+  border-radius: 0.6rem;
 `

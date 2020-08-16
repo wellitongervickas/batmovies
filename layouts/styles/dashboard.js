@@ -10,4 +10,10 @@ export const container = styled.div`
   }
 `
 
+export const content = styled.div`
+  color: ${({ theme }) => theme.secondary};
+  padding: 2rem;
+  overflow-y: auto;
+`
+
 export default container

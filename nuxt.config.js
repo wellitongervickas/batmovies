@@ -1,4 +1,10 @@
 export default {
+  env: {
+    appUrl: process.env.APP_URL || 'localhost',
+    appApiKey: process.env.APP_API_KEY,
+    appApiUrl: process.env.APP_API_URL,
+    appApiThumbPath: process.env.APP_API_THUMB_PATH,
+  },
   /*
    ** Nuxt rendering mode
    ** See https://nuxtjs.org/api/configuration-mode

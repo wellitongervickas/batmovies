@@ -1,12 +1,29 @@
 <template>
   <div>
-    im welcome
+    <div>
+      <sub-heading icon="fire">Popular Movies</sub-heading>
+      <movies-list :movies="moviesWeek" />
+    </div>
   </div>
 </template>
 
 <script>
+import MoviesList from '../components/Movies/List'
+import SubHeading from '../components/Typography/SubHeading'
+
+import { moviesWeek } from '../helpers/mocks/movies'
+
 export default {
   layout: 'dashboard',
   name: 'Welcome',
+  components: {
+    MoviesList,
+    SubHeading,
+  },
+  data() {
+    return {
+      moviesWeek: moviesWeek.results,
+    }
+  },
 }
 </script>

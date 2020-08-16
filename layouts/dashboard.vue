@@ -4,7 +4,9 @@
     <layout-container>
       <dashboard-container>
         <nav-sidebar />
-        <Nuxt />
+        <dashboard-content>
+          <Nuxt />
+        </dashboard-content>
       </dashboard-container>
     </layout-container>
   </theme-provider>
@@ -29,6 +31,7 @@ export default {
     LayoutContainer,
 
     DashboardContainer: styles.container,
+    DashboardContent: styles.content,
   },
   data() {
     return {
