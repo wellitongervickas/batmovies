@@ -6,6 +6,7 @@ const darkTheme = {
   black: '#1f1f1f',
   primary: '#E94B25',
   secondary: '#FFFFFF',
+  purple: '#8D77FE',
 
   red: '#F24E2B',
   ...defaultSettings,

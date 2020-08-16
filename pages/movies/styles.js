@@ -1,5 +1,9 @@
 import styled from 'vue-styled-components'
 
+export const movieBadges = styled.div`
+  margin-top: 1rem;
+`
+
 export const movieContainer = styled.div`
   display: flex;
 
@@ -21,6 +25,10 @@ export const movieThumbContainer = styled.div`
 `
 
 export const movieContent = styled.div`
+  p {
+    margin-bottom: 2rem;
+  }
+
   @media (min-width: ${({ theme }) => theme.breakPointMobile}) {
     margin-left: 2rem;
   }
