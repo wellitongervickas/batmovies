@@ -8,7 +8,7 @@
         />
       </search-container>
       <sub-heading icon="list-ul">Results</sub-heading>
-      <movies-list :movies="moviesWeek" />
+      <movies-list :movies="movies" />
     </div>
   </div>
 </template>
@@ -30,10 +30,22 @@ export default {
 
     SearchContainer: styles.searchContainer,
   },
-  data() {
-    return {
-      moviesWeek: [],
-    }
+  computed: {
+    movies() {
+      return this.$store.state.searchMovies.results
+    },
+  },
+  mounted() {
+    this.$store.commit('searchMovies/clear')
+
+    setTimeout(() => {
+      this.searchMovies('marvel')
+    }, 5000)
+  },
+  methods: {
+    searchMovies(query) {
+      this.$store.dispatch('searchMovies/search', query)
+    },
   },
 }
 </script>

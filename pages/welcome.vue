@@ -2,7 +2,7 @@
   <div>
     <div>
       <sub-heading icon="fire">Popular Movies</sub-heading>
-      <movies-list :movies="moviesWeek" />
+      <movies-list :movies="trendingMovies" :loading="loading" />
     </div>
   </div>
 </template>
@@ -11,8 +11,6 @@
 import MoviesList from '../components/Movies/List'
 import SubHeading from '../components/Typography/SubHeading'
 
-import { moviesWeek } from '../helpers/mocks/movies'
-
 export default {
   layout: 'dashboard',
   name: 'Welcome',
@@ -20,10 +18,22 @@ export default {
     MoviesList,
     SubHeading,
   },
-  data() {
-    return {
-      moviesWeek: moviesWeek.results,
-    }
+  computed: {
+    loading() {
+      return this.$store.state.trendingMovies.loading
+    },
+    trendingMovies() {
+      return this.$store.state.trendingMovies.list
+    },
+  },
+  mounted() {
+    this.$store.commit('trendingMovies/clear')
+    this.getMovies()
+  },
+  methods: {
+    getMovies() {
+      this.$store.dispatch('trendingMovies/list')
+    },
   },
 }
 </script>

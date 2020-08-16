@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="movie">
     <heading icon="film">{{ movie.title }}</heading>
     <sub-heading>{{ movie.tagline }}</sub-heading>
     <movie-container>
@@ -15,12 +15,18 @@
         </div>
 
         <movie-badges>
-          <badges-item v-for="gender in genders" :key="gender">
+          <badges-item v-for="gender in genres" :key="gender">
             {{ gender }}
           </badges-item>
         </movie-badges>
       </movie-content>
     </movie-container>
+  </div>
+  <div v-else-if="loading">
+    <spinner />
+  </div>
+  <div v-else>
+    No movie to show
   </div>
 </template>
 
@@ -30,9 +36,9 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import Heading from '../../components/Typography/Heading'
 import SubHeading from '../../components/Typography/SubHeading'
 import BadgesItem from '../../components/Badgets/Item'
+import Spinner from '../../components/Loadings/Spinner'
 
-import { singleMovie } from '../../helpers/mocks/movies'
-
+import imgTest from '../../assets/empty.png'
 import * as styles from './styles'
 
 export default {
@@ -42,6 +48,7 @@ export default {
     Heading,
     SubHeading,
     BadgesItem,
+    Spinner,
 
     FontAwesomeIcon,
 
@@ -50,17 +57,33 @@ export default {
     MovieContent: styles.movieContent,
     MovieBadges: styles.movieBadges,
   },
-  data() {
-    return {
-      movie: singleMovie,
-    }
-  },
   computed: {
     postThumbnail() {
-      return `${process.env.appApiThumbPathBig}/${this.movie.poster_path}`
+      if (this.movie.poster_path) {
+        return `${process.env.appApiThumbPathBig}/${this.movie.poster_path}`
+      }
+
+      return imgTest
     },
-    genders() {
+    genres() {
       return this.movie.genres.map((gender) => gender.name)
+    },
+
+    loading() {
+      return this.$store.state.movieDetails.loading
+    },
+
+    movie() {
+      return this.$store.state.movieDetails.movie
+    },
+  },
+  mounted() {
+    this.$store.commit('movieDetails/clear')
+    this.getMovie(this.$route.params.id)
+  },
+  methods: {
+    getMovie(id) {
+      this.$store.dispatch('movieDetails/movie', id)
     },
   },
 }

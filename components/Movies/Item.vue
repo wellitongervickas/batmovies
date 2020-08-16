@@ -18,6 +18,8 @@
 <script>
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
+import imgTest from '../../assets/empty.png'
+
 import * as styles from './styles'
 
 export default {
@@ -38,7 +40,11 @@ export default {
       return `/movies/${this.movie.id}`
     },
     postThumbnail() {
-      return `${process.env.appApiThumbPath}/${this.movie.poster_path}`
+      if (this.movie.poster_path) {
+        return `${process.env.appApiThumbPath}/${this.movie.poster_path}`
+      }
+
+      return imgTest
     },
   },
 }

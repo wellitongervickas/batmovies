@@ -16,6 +16,7 @@ export const movieThumbContainer = styled.div`
   text-align: center;
 
   img {
+    min-width: 300px;
     border-radius: 1rem;
     border: 2px solid ${({ theme }) => theme.primary};
     box-shadow: 0 0 0.6rem ${({ theme }) => theme.primary};
