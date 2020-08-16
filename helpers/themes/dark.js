@@ -1,7 +1,7 @@
 import defaultSettings from './default'
 
 const darkTheme = {
-  dark: '#262216',
+  dark: '#262626',
   primary: '#E94B25',
   secondary: '#FFFFFF',
 

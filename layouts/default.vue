@@ -1,45 +1,20 @@
 <template>
   <theme-provider :theme="{ ...theme }">
+    <global-styles />
     <Nuxt />
   </theme-provider>
 </template>
 <script>
-import { ThemeProvider, injectGlobal } from 'vue-styled-components'
-import { darkTheme, defaultTheme } from '../helpers/themes'
+import { ThemeProvider } from 'vue-styled-components'
 
-injectGlobal`
-  html, body, #__nuxt, #__layout {
-    width: 100%;
-    height: 100%;
-  }
+import GlobalStyles from '../components/global'
 
-  body {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-size: 16px;
-    font-family: 'Roboto', sans-serif;
+import { darkTheme } from '../helpers/themes'
 
-    line-height: ${defaultTheme.lineHeight};
-  }
-
-  img {
-    max-width: 100%;
-  }
-
-  .page-enter-active,
-  .page-leave-active {
-    transition: opacity 0.5s;
-  }
-
-  .page-enter,
-  .page-leave-to {
-    opacity: 0;
-  }
-`
 export default {
   components: {
     ThemeProvider,
+    GlobalStyles,
   },
   data() {
     return {
