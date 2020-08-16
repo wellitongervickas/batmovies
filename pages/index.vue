@@ -23,6 +23,7 @@ import themeDefault from '../helpers/themes/default'
 import * as styles from './styles/index'
 
 export default {
+  name: 'Index',
   components: {
     LogoMain,
     LayoutContainer,

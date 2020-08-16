@@ -1,6 +1,7 @@
 import styled from 'vue-styled-components'
 
 export const container = styled.div`
+  user-select: none;
   text-align: center;
   animation: 1s appear;
   margin: auto;
