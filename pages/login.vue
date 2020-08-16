@@ -1,22 +1,17 @@
 <template>
-  <LayoutContainer :breakpoint="breakpoint">
-    <container>
-      <div>
-        <logo-main />
-      </div>
-      <form-container>
-        <Form :section="section" :button="button" />
-      </form-container>
-    </container>
-  </LayoutContainer>
+  <container>
+    <div>
+      <logo-main />
+    </div>
+    <form-container>
+      <Form :section="section" :button="button" />
+    </form-container>
+  </container>
 </template>
 
 <script>
 import Form from '../components/Form/Form'
-import LayoutContainer from '../components/Layout/Container'
 import LogoMain from '../components/Logo/Main'
-
-import themeDefault from '../helpers/themes/default'
 
 import * as styles from './styles/login'
 import section from './sections/login'
@@ -28,13 +23,11 @@ export default {
     FormContainer: styles.formContainer,
 
     LogoMain,
-    LayoutContainer,
 
     Container: styles.container,
   },
   data() {
     return {
-      breakpoint: themeDefault.breakpointDesktop,
       section: section(),
       button: {
         label: 'Sign in',

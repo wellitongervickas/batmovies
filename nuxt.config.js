@@ -14,7 +14,7 @@ export default {
    ** See https://nuxtjs.org/api/configuration-head
    */
   head: {
-    title: process.env.npm_package_name || '',
+    title: 'Bat Movies - Better way to watch your movies',
     meta: [
       { charset: 'utf-8' },
       {

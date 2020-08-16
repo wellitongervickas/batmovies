@@ -36,6 +36,10 @@ injectGlobal`
   .page-leave-to {
     opacity: 0;
   }
+
+  a {
+    text-decoration: none;
+  }
 `
 
 export default {

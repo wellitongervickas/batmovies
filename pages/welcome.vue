@@ -1,16 +1,12 @@
 <template>
-  <LayoutContainer :use-background="false">
-    #welcome
-  </LayoutContainer>
+  <div>
+    im content
+  </div>
 </template>
 
 <script>
-import LayoutContainer from '../components/Layout/Container'
-
 export default {
+  layout: 'dashboard',
   name: 'Index',
-  components: {
-    LayoutContainer,
-  },
 }
 </script>
