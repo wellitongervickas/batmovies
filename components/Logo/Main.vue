@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import Icon from './Icon.vue'
+import Icon from './Icon'
 import * as styles from './styles'
 
 export default {

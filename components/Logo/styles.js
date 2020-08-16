@@ -25,6 +25,11 @@ export const mainIcon = styled.div`
   position: absolute;
   top: -35px;
   left: 25px;
+
+  @media screen and (min-width: ${({ theme }) => theme.breakPointMobile}) {
+    top: -45px;
+    left: 15px;
+  }
 `
 
 export const firstName = styled.strong``

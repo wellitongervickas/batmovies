@@ -18,6 +18,9 @@
     "vue-styled-components": "^1.5.1"
   },
   "devDependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.30",
+    "@fortawesome/free-solid-svg-icons": "^5.14.0",
+    "@fortawesome/vue-fontawesome": "^0.1.10",
     "@nuxtjs/eslint-config": "^3.1.0",
     "@nuxtjs/eslint-module": "^2.0.0",
     "@nuxtjs/google-fonts": "^1.0.0",
@@ -30,6 +33,7 @@
     "eslint-plugin-nuxt": "^1.0.0",
     "eslint-plugin-prettier": "^3.1.4",
     "jest": "^26.1.0",
+    "nuxt-fontawesome": "^0.4.0",
     "prettier": "^2.0.5",
     "vue-jest": "^3.0.4"
   }

@@ -51,6 +51,18 @@ export default {
     // Doc: https://github.com/nuxt-community/eslint-module
     '@nuxtjs/eslint-module',
     [
+      'nuxt-fontawesome',
+      {
+        component: 'fa',
+        imports: [
+          {
+            set: '@fortawesome/free-solid-svg-icons',
+            icons: ['fas'],
+          },
+        ],
+      },
+    ],
+    [
       '@nuxtjs/google-fonts',
       {
         preconnect: true,
