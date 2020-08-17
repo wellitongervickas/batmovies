@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import Spinner from '../Loadings/Spinner'
+import Spinner from '@/components/Loadings/Spinner'
 
 import MoviesItem from './Item'
 import * as styles from './styles'

@@ -15,9 +15,9 @@
 </template>
 
 <script>
-import SearchBar from '../components/Search/Bar'
-import MoviesList from '../components/Movies/List'
-import SubHeading from '../components/Typography/SubHeading'
+import SearchBar from '@/components/Search/Bar'
+import MoviesList from '@/components/Movies/List'
+import SubHeading from '@/components/Typography/SubHeading'
 
 import * as styles from './styles/search'
 

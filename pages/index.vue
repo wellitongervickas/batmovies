@@ -12,8 +12,8 @@
 </template>
 
 <script>
-import FormButton from '../components/Form/Button'
-import LogoMain from '../components/Logo/Main'
+import FormButton from '@/components/Form/Button'
+import LogoMain from '@/components/Logo/Main'
 
 import * as styles from './styles/index'
 

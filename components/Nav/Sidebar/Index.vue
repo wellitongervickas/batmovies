@@ -24,7 +24,7 @@
 <script>
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-import LogoIcon from '../../Logo/Icon'
+import LogoIcon from '@/components/Logo/Icon'
 
 import * as styles from './styles'
 

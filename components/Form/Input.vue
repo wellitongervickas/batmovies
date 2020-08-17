@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import validators from '../../helpers/validators'
+import validators from '@/helpers/validators'
 import * as styles from './styles'
 
 export default {

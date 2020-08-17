@@ -5,7 +5,7 @@
 <script>
 import { injectGlobal } from 'vue-styled-components'
 
-import { defaultTheme } from '../helpers/themes'
+import { defaultTheme } from '@/helpers/themes'
 
 injectGlobal`
   html {

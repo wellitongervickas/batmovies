@@ -8,12 +8,12 @@
 </template>
 <script>
 import { ThemeProvider } from 'vue-styled-components'
-import LayoutContainer from '../components/Layout/Container'
+import LayoutContainer from '@/components/Layout/Container'
 
-import GlobalStyles from '../components/global'
-import themeDefault from '../helpers/themes/default'
+import GlobalStyles from '@/components/global'
+import themeDefault from '@/helpers/themes/default'
 
-import { darkTheme } from '../helpers/themes'
+import { darkTheme } from '@/helpers/themes'
 
 export default {
   name: 'LayoutDefault',

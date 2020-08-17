@@ -12,8 +12,8 @@
 </template>
 
 <script>
-import FormInput from './Input'
-import FormButton from './Button'
+import FormInput from '@/components/Form/Input'
+import FormButton from '@/components/Form/Button'
 
 import * as styles from './styles'
 

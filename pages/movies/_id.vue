@@ -33,10 +33,10 @@
 <script>
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-import Heading from '../../components/Typography/Heading'
-import SubHeading from '../../components/Typography/SubHeading'
-import BadgesItem from '../../components/Badgets/Item'
-import Spinner from '../../components/Loadings/Spinner'
+import Heading from '@/components/Typography/Heading'
+import SubHeading from '@/components/Typography/SubHeading'
+import BadgesItem from '@/components/Badgets/Item'
+import Spinner from '@/components/Loadings/Spinner'
 
 import imgTest from '../../assets/empty.png'
 import * as styles from './styles'

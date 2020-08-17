@@ -8,8 +8,8 @@
 </template>
 
 <script>
-import MoviesList from '../components/Movies/List'
-import SubHeading from '../components/Typography/SubHeading'
+import MoviesList from '@/components/Movies/List'
+import SubHeading from '@/components/Typography/SubHeading'
 
 export default {
   middleware: 'auth',

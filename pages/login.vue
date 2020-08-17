@@ -15,8 +15,8 @@
 </template>
 
 <script>
-import Form from '../components/Form/Form'
-import LogoMain from '../components/Logo/Main'
+import Form from '@/components/Form/Form'
+import LogoMain from '@/components/Logo/Main'
 
 import * as styles from './styles/login'
 import section from './sections/login'

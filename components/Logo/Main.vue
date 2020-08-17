@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import Icon from './Icon'
+import Icon from '@/components/Logo/Icon'
 import * as styles from './styles'
 
 export default {
