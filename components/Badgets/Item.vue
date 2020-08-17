@@ -8,7 +8,7 @@
 import * as styles from './styles'
 
 export default {
-  name: 'BadgesItem',
+  name: 'BadgetsItem',
   components: {
     BadgeContainer: styles.badgeContainer,
   },
