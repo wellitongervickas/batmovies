@@ -4,7 +4,12 @@
       <logo-main />
     </div>
     <form-container>
-      <Form :section="section" :button="button" />
+      <Form
+        :section="section"
+        :button="button"
+        :loading="loading"
+        @submit="onSubmit"
+      />
     </form-container>
   </container>
 </template>
@@ -34,6 +39,21 @@ export default {
         icon: 'sign-in-alt',
       },
     }
+  },
+  computed: {
+    loading() {
+      return this.$store.state.auth.loading
+    },
+  },
+  beforeMount() {
+    this.$store.commit('auth/clear')
+  },
+  methods: {
+    onSubmit(map) {
+      this.$store.dispatch('auth/authenticate', map).then(() => {
+        this.$router.push('/welcome')
+      })
+    },
   },
 }
 </script>

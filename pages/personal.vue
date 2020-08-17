@@ -11,8 +11,6 @@
 import MoviesList from '../components/Movies/List'
 import SubHeading from '../components/Typography/SubHeading'
 
-import { moviesWeek } from '../helpers/mocks/movies'
-
 export default {
   layout: 'dashboard',
   name: 'Personal',
@@ -22,7 +20,7 @@ export default {
   },
   data() {
     return {
-      moviesWeek: moviesWeek.results,
+      moviesWeek: [],
     }
   },
 }

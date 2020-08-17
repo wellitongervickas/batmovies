@@ -6,21 +6,29 @@
     </label>
     <input
       :id="field.id"
+      v-model="value"
       :name="field.id"
       :placeholder="field.placeholder"
       :type="field.type"
-      @input="onInput"
-      @change="onChange"
+      @input="input"
+      @change="change"
+      @blur="change"
     />
+    <field-error v-if="error">
+      {{ error }}
+    </field-error>
   </field-container>
 </template>
 
 <script>
+import validators from '../../helpers/validators'
 import * as styles from './styles'
+
 export default {
   name: 'FormInput',
   components: {
     FieldContainer: styles.fieldContainer,
+    FieldError: styles.errorContainer,
   },
   props: {
     field: {
@@ -31,6 +39,7 @@ export default {
   data() {
     return {
       value: '',
+      error: '',
     }
   },
   methods: {
@@ -41,20 +50,27 @@ export default {
       )
     },
 
-    onInput(e) {
-      this.input(e.target.value)
+    validate() {
+      const { validations } = this.field
+      this.error = null
+
+      if (validations && validations.length) {
+        this.error = validations.reduce((text, validation) => {
+          text = validators[validation.type](this.value, validation)
+          return text
+        }, null)
+      }
+
+      return !!this.error
     },
 
-    onChange(e) {
-      this.change(e.target.value)
+    change() {
+      this.error = null
+      this.$emit('change', this.value)
     },
 
-    change(value) {
-      this.$emit('change', value)
-    },
-
-    input(value) {
-      this.$emit('input', value)
+    input() {
+      this.$emit('input', this.value)
     },
   },
 }

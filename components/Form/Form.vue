@@ -4,7 +4,7 @@
       <component :is="type(field.type)" ref="field" :field="field" />
     </form-fields>
     <form-buttons>
-      <form-button :icon="button.icon">
+      <form-button :icon="button.icon" :disabled="loading" @click="onSubmit">
         {{ button.label }}
       </form-button>
     </form-buttons>
@@ -27,6 +27,10 @@ export default {
     FormButtons: styles.buttons,
   },
   props: {
+    loading: {
+      type: Boolean,
+      default: false,
+    },
     section: {
       type: Array,
       default: () => [],
@@ -46,6 +50,28 @@ export default {
       }
 
       return 'span'
+    },
+
+    onSubmit() {
+      let map = {}
+      let error = true
+
+      this.$refs.field.forEach((item) => {
+        error = item.validate()
+
+        map = {
+          ...map,
+          [item.field.id]: item.value,
+        }
+      })
+
+      if (!error) {
+        this.submit(map)
+      }
+    },
+
+    submit(map) {
+      this.$emit('submit', map)
     },
   },
 }

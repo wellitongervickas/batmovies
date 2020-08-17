@@ -82,5 +82,21 @@ export const buttonContainer = styled.div`
   button {
     border: none;
     outline: none;
+
+    &:disabled {
+      opacity: 0.5;
+    }
   }
+`
+
+export const errorContainer = styled.div`
+  background-color: ${({ theme }) => theme.primary};
+  color: ${({ theme }) => theme.secondary};
+  opacity: 0.7;
+
+  padding: 0.4rem 0.6rem;
+
+  border-radius: 0.6rem;
+
+  margin-top: 1rem;
 `

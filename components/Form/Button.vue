@@ -1,6 +1,11 @@
 <template>
-  <button-container @click="onClick">
-    <component :is="type" v-bind="options">
+  <button-container>
+    <component
+      :is="type"
+      v-bind="options"
+      :disabled="disabled"
+      @click="onClick"
+    >
       <slot />
       <font-awesome-icon v-if="icon" :icon="icon" />
     </component>
@@ -18,6 +23,10 @@ export default {
     ButtonContainer: styles.buttonContainer,
   },
   props: {
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
     icon: {
       type: String,
       default: null,
@@ -47,10 +56,6 @@ export default {
   },
   methods: {
     onClick() {
-      this.click()
-    },
-
-    click() {
       this.$emit('click')
     },
   },

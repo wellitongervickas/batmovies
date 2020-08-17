@@ -1,16 +1,13 @@
 export default function section() {
   return [
     {
-      id: 'email',
-      type: 'email',
-      label: 'Email',
-      placeholder: 'Type your email',
+      id: 'username',
+      type: 'text',
+      label: 'Username',
+      placeholder: 'Type your username',
       validations: [
         {
           type: 'blank',
-        },
-        {
-          type: 'email',
         },
       ],
     },
@@ -22,14 +19,6 @@ export default function section() {
       validations: [
         {
           type: 'blank',
-        },
-        {
-          type: 'lessThan',
-          count: 16,
-        },
-        {
-          type: 'greaterThan',
-          count: 8,
         },
       ],
     },
