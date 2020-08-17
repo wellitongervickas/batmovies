@@ -47,6 +47,7 @@ export default {
   },
   beforeMount() {
     this.$store.commit('authServer/clear')
+    this.$auth.setUser(null)
   },
   methods: {
     onSubmit(map) {

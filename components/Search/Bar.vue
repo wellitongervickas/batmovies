@@ -2,7 +2,7 @@
   <div>
     <search-bar-container>
       <search-bar-field>
-        <form-input :field="field" @change="onChange" />
+        <form-input :field="field" @input="onChange" />
       </search-bar-field>
       <search-bar-button>
         <form-button icon="search" :disabled="!query" @click="onSubmit" />

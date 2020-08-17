@@ -10,7 +10,7 @@
         <nuxt-link to="/search" title="Search">
           <font-awesome-icon icon="search" />
         </nuxt-link>
-        <nuxt-link to="/personal" title="Personal">
+        <nuxt-link to="/favorite" title="Favorite movies">
           <font-awesome-icon icon="star" />
         </nuxt-link>
       </sidebar-content>

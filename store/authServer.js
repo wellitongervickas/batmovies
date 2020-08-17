@@ -1,29 +1,20 @@
 export const state = () => ({
   loading: false,
-  // authenticated: null,
 })
 
 export const mutations = {
   clear: (state) => {
     state.loading = false
-    // state.authenticated = null
   },
   loading: (state, bool) => {
     state.loading = bool
   },
-  // authenticated: (state, authenticated) => {
-  //   state.authenticated = authenticated
-  // },
 }
 
 export const actions = {
   authenticate({ commit }, map) {
     return new Promise((resolve, reject) => {
       commit('loading', true)
-
-      // pegar request_token
-      // -> pegar sessão
-      // -> logar usuario
 
       this.$axios
         .$get(`/authentication/token/new?api_key=${process.env.appApiKey}`)
@@ -48,13 +39,13 @@ export const actions = {
                   this.$auth.setUser(user)
                   resolve()
                 })
+                .catch((err) => {
+                  reject(err)
+                })
+                .finally(() => {
+                  commit('loading', false)
+                })
             })
-        })
-        .catch((err) => {
-          reject(err)
-        })
-        .finally(() => {
-          commit('loading', false)
         })
     })
   },

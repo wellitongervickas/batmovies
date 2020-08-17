@@ -1,8 +1,8 @@
 <template>
   <div>
     <div>
-      <sub-heading icon="fire">Popular Movies</sub-heading>
-      <movies-list :movies="trendingMovies" :loading="loading" />
+      <sub-heading icon="laugh">My Movies</sub-heading>
+      <movies-list :movies="favoriteMovies" :loading="loading" />
     </div>
   </div>
 </template>
@@ -14,28 +14,28 @@ import SubHeading from '../components/Typography/SubHeading'
 export default {
   middleware: 'auth',
   layout: 'dashboard',
-  name: 'Welcome',
+  name: 'Favorite',
   components: {
     MoviesList,
     SubHeading,
   },
   computed: {
     loading() {
-      return this.$store.state.trendingMovies.loading
+      return this.$store.state.favoriteMovies.loading
     },
-    trendingMovies() {
-      return this.$store.state.trendingMovies.movies
+    favoriteMovies() {
+      return this.$store.state.favoriteMovies.movies
     },
   },
   beforeMount() {
-    this.$store.commit('trendingMovies/clear')
+    this.$store.commit('favoriteMovies/clear')
   },
   mounted() {
     this.getMovies()
   },
   methods: {
     getMovies() {
-      this.$store.dispatch('trendingMovies/movies')
+      this.$store.dispatch('favoriteMovies/movies')
     },
   },
 }

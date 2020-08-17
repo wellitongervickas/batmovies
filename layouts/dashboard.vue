@@ -5,7 +5,7 @@
       <dashboard-container>
         <nav-sidebar />
         <dashboard-content>
-          <dashboard-greeting>Welcome, welliton!</dashboard-greeting>
+          <dashboard-greeting>Welcome,</dashboard-greeting>
           <Nuxt />
         </dashboard-content>
       </dashboard-container>
