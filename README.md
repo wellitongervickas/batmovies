@@ -1,5 +1,6 @@
 # Bat Mvoies
 Show popular movies, search a movie by title and see your favorited movies
+[Demo](https://batmovies.herokuapp.com/)
 
 ## Build Setup
 
