@@ -22,6 +22,7 @@ import SubHeading from '../components/Typography/SubHeading'
 import * as styles from './styles/search'
 
 export default {
+  middleware: 'auth',
   layout: 'dashboard',
   name: 'Search',
   components: {

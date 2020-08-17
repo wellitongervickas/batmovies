@@ -88,7 +88,13 @@ export default {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
+    '@nuxtjs/auth',
   ],
+  /*
+   ** auth module configuration
+   ** See https://auth.nuxtjs.org/guide/setup.html
+   */
+  auth: {},
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options

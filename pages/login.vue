@@ -42,15 +42,15 @@ export default {
   },
   computed: {
     loading() {
-      return this.$store.state.auth.loading
+      return this.$store.state.authServer.loading
     },
   },
   beforeMount() {
-    this.$store.commit('auth/clear')
+    this.$store.commit('authServer/clear')
   },
   methods: {
     onSubmit(map) {
-      this.$store.dispatch('auth/authenticate', map).then(() => {
+      this.$store.dispatch('authServer/authenticate', map).then(() => {
         this.$router.push('/welcome')
       })
     },

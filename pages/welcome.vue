@@ -12,6 +12,7 @@ import MoviesList from '../components/Movies/List'
 import SubHeading from '../components/Typography/SubHeading'
 
 export default {
+  middleware: 'auth',
   layout: 'dashboard',
   name: 'Welcome',
   components: {
