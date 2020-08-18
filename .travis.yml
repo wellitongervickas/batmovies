@@ -1,13 +1,27 @@
-language: node_js
+anguage: node_js
 node_js:
-- stable
+  - '8'
+
 cache:
-  directories: node_modules
-script: npm run test:build
+  directories:
+    - 'node_modules'
+
+branches:
+  only:
+    - master
+
+install:
+  - npm install
+  - npm run generate
+
+script:
+  - echo "Skipping tests"
+
 deploy:
-  provider: heroku
-  api_key:
-    secure: bUCDXyOzExDsA0z5qX4BNBh98jAtQ9TSEtyZFbXPJk/RamoYU7M+UUFrWwhONVkVtT91nx7h2L2sAxyggEzANSNUUEC0b3TN1+rEDRxz5GkdZIQxW0rx6xZfeMLuLZpC1RKY/c5D2IvbXAP0vK7LOR+MqgQaJoSaGY7r3C0bZbiEFRHKdFGGdLZUL+U9Dq7xgfsS3KkBuKxUmQVhhYfDq55jKp8vuOOKlCJM6iW5Rz1gmJwuBsuDQEGsOFDKYrDjdtHFizBnNW3YHPtQHU5/yBEecb5TlpPW3CYPMX5B6vyO+fCkdI1Sp/eY9cCNv7Z+f0n7ruYOgDa9MXaOLTvW8zMkXbvrWbnu9wDRom2ksi++PC61BrIFVliahcLBLHFMLFpAdoh6mDOpSydHkSHRAsoxJSPidSaNRlCowaU0BFSNCKP5/8hd8+SY9WOL+6VIY+rLjO3zwsLn6zcRYu7d5j1VkmUrgacMhCRAS6X4DOtjutNbIM0bAFrRX1KG6TG6TEscMUsmv2/qmNsCSxDQRjjWBML2gJLzvGHynz+XnJ0vHjz/hkyMYkc5Q08S8gyHJFsMTg49WmQ40WJr9d0gWb5WKN6Ww/T4NComXy+lQMwdI0ou6gqKgJLP9ha4lx9WZUYIqBwaE+ym3DWrhc7RfOUxWgx996qGMXLigYMQ14s=
-  app: batmovies
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_ACCESS_TOKEN # Set in travis-ci.org dashboard, marked secure https://docs.travis-ci.com/user/deployment/pages/#Setting-the-GitHub-token
+  target-branch: gh-pages
+  local-dir: dist
   on:
-    repo: wellitongervickas/batmovies
+    branch: master
