@@ -25,5 +25,8 @@ export default {
     Container: styles.container,
     ContainerButton: styles.containerButton,
   },
+  mounted() {
+    console.log(this.$store.state)
+  },
 }
 </script>
