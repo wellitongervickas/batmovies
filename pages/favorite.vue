@@ -36,6 +36,7 @@ export default {
   methods: {
     getMovies() {
       this.$store.dispatch('favoriteMovies/items', {
+        account_id: this.$auth.user.id,
         params: {
           session_id: this.$auth.user.session_id,
         },
