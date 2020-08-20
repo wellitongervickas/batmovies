@@ -31,7 +31,9 @@ describe('Pages Welcome', () => {
         dispatch: jest.fn(),
         state: {
           trendingMovies: {
-            movies: [...moviesWeek.results],
+            items: {
+              results: [...moviesWeek.results],
+            },
           },
         },
       },

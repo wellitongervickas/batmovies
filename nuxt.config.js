@@ -94,7 +94,13 @@ export default {
    ** auth module configuration
    ** See https://auth.nuxtjs.org/guide/setup.html
    */
-  auth: {},
+  auth: {
+    redirect: {
+      home: '/welcome',
+      login: '/login',
+      logout: '/',
+    },
+  },
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options

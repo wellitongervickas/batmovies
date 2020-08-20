@@ -8,12 +8,10 @@
       </movie-thumb-container>
       <movie-content>
         <p>{{ movie.overview }}</p>
-
         <div>
           <font-awesome-icon icon="star" />
           {{ movie.vote_average }}
         </div>
-
         <movie-badges>
           <badges-item v-for="gender in genres" :key="gender">
             {{ gender }}

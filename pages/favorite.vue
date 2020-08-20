@@ -21,10 +21,10 @@ export default {
   },
   computed: {
     loading() {
-      return this.$store.state.favoriteMovies.loading
+      return this.$store.state.favoriteMovies.items.loading
     },
     favoriteMovies() {
-      return this.$store.state.favoriteMovies.movies
+      return this.$store.state.favoriteMovies.items.results || []
     },
   },
   beforeMount() {
@@ -35,7 +35,11 @@ export default {
   },
   methods: {
     getMovies() {
-      this.$store.dispatch('favoriteMovies/movies')
+      this.$store.dispatch('favoriteMovies/items', {
+        params: {
+          session_id: this.$auth.user.session_id,
+        },
+      })
     },
   },
 }
