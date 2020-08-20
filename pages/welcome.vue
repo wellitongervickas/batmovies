@@ -21,10 +21,10 @@ export default {
   },
   computed: {
     loading() {
-      return this.$store.state.trendingMovies.loading
+      return this.$store.state.trendingMovies.items.loading
     },
     trendingMovies() {
-      return this.$store.state.trendingMovies.movies
+      return this.$store.state.trendingMovies.items.results || []
     },
   },
   beforeMount() {
@@ -35,7 +35,7 @@ export default {
   },
   methods: {
     getMovies() {
-      this.$store.dispatch('trendingMovies/movies')
+      this.$store.dispatch('trendingMovies/items')
     },
   },
 }

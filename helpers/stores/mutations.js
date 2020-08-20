@@ -1,31 +1,34 @@
 import statesGenerator from './states'
 
-const mutationsGenerator = () => ({
-  items: (state, payload) => ({
-    error: () => {
-      state.items.error = payload
+function mutationsGenerator(options = {}) {
+  return {
+    mutations: {
+      'items/error'(state, payload) {
+        state.items.error = payload
+      },
+      'items/loading'(state, payload) {
+        state.items.loading = payload
+      },
+      'items/results'(state, payload) {
+        state.items.results = payload
+      },
+
+      'item/error'(state, payload) {
+        state.item.error = payload
+      },
+      'item/loading'(state, payload) {
+        state.item.loading = payload
+      },
+      'item/result'(state, payload) {
+        state.item.result = payload
+      },
+
+      clear: (state) => {
+        state = { ...statesGenerator() }
+      },
+      ...options.mutations,
     },
-    loading: () => {
-      state.items.loading = payload
-    },
-    results: () => {
-      state.items.results = payload
-    },
-  }),
-  item: (state, payload) => ({
-    error: () => {
-      state.item.error = payload
-    },
-    loading: () => {
-      state.item.loading = payload
-    },
-    result: () => {
-      state.item.result = payload
-    },
-  }),
-  clear: (state) => {
-    state = { ...statesGenerator() }
-  },
-})
+  }
+}
 
 export default mutationsGenerator

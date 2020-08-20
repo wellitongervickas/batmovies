@@ -45,6 +45,18 @@ export const actions = {
                   commit('loading', false)
                 })
             })
+            .catch((err) => {
+              reject(err)
+            })
+            .finally(() => {
+              commit('loading', false)
+            })
+        })
+        .catch((err) => {
+          reject(err)
+        })
+        .finally(() => {
+          commit('loading', false)
         })
     })
   },

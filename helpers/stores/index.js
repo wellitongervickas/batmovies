@@ -2,15 +2,11 @@ import statesGenerator from './states'
 import mutationsGenerator from './mutations'
 import actionsGenerator from './actions'
 
-const storesGenerator = () => {
-  const state = statesGenerator()
-  const mutations = mutationsGenerator()
-  const actions = actionsGenerator()
-
+function storesGenerator(path, options = {}) {
   return {
-    state,
-    mutations,
-    actions,
+    ...mutationsGenerator(options),
+    ...statesGenerator(options),
+    ...actionsGenerator(path, options),
   }
 }
 
