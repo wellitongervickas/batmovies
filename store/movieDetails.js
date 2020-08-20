@@ -19,9 +19,7 @@ export const mutations = {
 export const actions = {
   async movie({ commit }, id) {
     commit('loading', true)
-    const movie = await this.$axios.$get(
-      `movie/${id}?api_key=${process.env.appApiKey}`
-    )
+    const movie = await this.$api.$get(`movie/${id}`)
 
     commit('movie', movie)
     commit('loading', false)

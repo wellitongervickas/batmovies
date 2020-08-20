@@ -42,6 +42,7 @@ import imgTest from '../../assets/empty.png'
 import * as styles from './styles'
 
 export default {
+  middleware: 'auth',
   layout: 'dashboard',
   name: 'MoviesDetails',
   components: {

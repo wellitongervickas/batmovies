@@ -16,20 +16,19 @@ export const actions = {
     return new Promise((resolve, reject) => {
       commit('loading', true)
 
-      this.$axios
-        .$get(`/authentication/token/new?api_key=${process.env.appApiKey}`)
+      this.$api
+        .$get(`/authentication/token/new`)
         .then(({ request_token: requestToken }) => {
-          this.$axios
-            .$post(
-              `authentication/token/validate_with_login?api_key=${process.env.appApiKey}`,
-              { ...map, request_token: requestToken }
-            )
+          this.$api
+            .$post(`authentication/token/validate_with_login`, {
+              ...map,
+              request_token: requestToken,
+            })
             .then(() => {
-              this.$axios
-                .$post(
-                  `/authentication/session/new?api_key=${process.env.appApiKey}`,
-                  { request_token: requestToken }
-                )
+              this.$api
+                .$post(`/authentication/session/new`, {
+                  request_token: requestToken,
+                })
                 .then(({ session_id: sessionId }) => {
                   const user = {
                     session_id: sessionId,

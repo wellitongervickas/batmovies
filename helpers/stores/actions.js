@@ -1,6 +1,6 @@
 const actionsGenerator = () => ({
-  items: async () => {},
-  item: async () => {},
+  items: async ({ commit }) => {},
+  item: async ({ commit }) => {},
 })
 
 export default actionsGenerator

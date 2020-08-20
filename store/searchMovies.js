@@ -20,9 +20,7 @@ export const actions = {
   async search({ commit }, query) {
     commit('loading', true)
 
-    const { results } = await this.$axios.$get(
-      `search/movie?query=${query}&api_key=${process.env.appApiKey}`
-    )
+    const { results } = await this.$api.$get(`search/movie?query=${query}`)
 
     commit('results', results)
     commit('loading', false)
