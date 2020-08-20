@@ -71,23 +71,24 @@ export default {
     },
 
     loading() {
-      return this.$store.state.movieDetails.loading
+      return this.$store.state.movieDetails.item.loading
     },
 
     movie() {
-      return this.$store.state.movieDetails.movie
+      return this.$store.state.movieDetails.item.result
     },
   },
   beforeMount() {
     this.$store.commit('movieDetails/clear')
   },
   mounted() {
-    this.$store.commit('movieDetails/clear')
     this.getMovie(this.$route.params.id)
   },
   methods: {
     getMovie(id) {
-      this.$store.dispatch('movieDetails/movie', id)
+      this.$store.dispatch('movieDetails/item', {
+        id,
+      })
     },
   },
 }
