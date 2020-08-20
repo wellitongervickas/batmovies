@@ -22,6 +22,10 @@ export const movieThumbContainer = styled.div`
     box-shadow: 0 0 0.6rem ${({ theme }) => theme.primary};
     background-color: ${({ theme }) => theme.black};
     object-fit: cover;
+
+    @media (min-width: ${({ theme }) => theme.breakPointMobile}) {
+      max-width: 100%;
+    }
   }
 `
 

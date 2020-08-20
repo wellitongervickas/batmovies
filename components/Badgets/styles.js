@@ -8,6 +8,8 @@ export const badgeContainer = styled.span`
 
   margin-right: 0.6rem;
 
+  display: inline-block;
+
   &:last-of-type {
     margin-right: 0;
   }
