@@ -11,6 +11,7 @@ export const badgeContainer = styled.span`
   display: inline-block;
 
   &:last-of-type {
+    margin-top: 0.6rem;
     margin-right: 0;
   }
 `

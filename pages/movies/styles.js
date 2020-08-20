@@ -23,8 +23,8 @@ export const movieThumbContainer = styled.div`
     background-color: ${({ theme }) => theme.black};
     object-fit: cover;
 
-    @media (min-width: ${({ theme }) => theme.breakPointMobile}) {
-      max-width: 100%;
+    @media screen and (max-width: ${({ theme }) => theme.breakPointMobile}) {
+      min-width: 100%;
     }
   }
 `

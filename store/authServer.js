@@ -9,7 +9,20 @@ export const mutations = {
 }
 
 export const actions = {
-  session({ commit }, payload) {
+  account({ commit }, params) {
+    this.$api
+      .$get('/account', { params })
+      .then((user) => {
+        this.$auth.setUser({
+          ...params,
+          ...user,
+        })
+      })
+      .finally(() => {
+        commit('loading', false)
+      })
+  },
+  session({ commit, dispatch }, payload) {
     commit('loading', true)
     this.$api
       .$post(`/authentication/session/new`, payload)
@@ -18,9 +31,10 @@ export const actions = {
           session_id: sessionId,
           request_token: payload.request_token,
         }
-        this.$auth.setUser(user)
+
+        dispatch('account', user)
       })
-      .finally(() => {
+      .catch(() => {
         commit('loading', false)
       })
   },

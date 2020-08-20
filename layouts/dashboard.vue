@@ -5,7 +5,7 @@
       <dashboard-container>
         <nav-sidebar />
         <dashboard-content>
-          <dashboard-greeting>Welcome,</dashboard-greeting>
+          <dashboard-greeting>Welcome, {{ userName }}</dashboard-greeting>
           <Nuxt />
         </dashboard-content>
       </dashboard-container>
@@ -39,6 +39,11 @@ export default {
     return {
       theme: darkTheme,
     }
+  },
+  computed: {
+    userName() {
+      return this.$auth.user.name || this.$auth.user.username
+    },
   },
 }
 </script>

@@ -46,15 +46,11 @@ export default {
     },
   },
   beforeMount() {
-    // this.$store.commit('authServer/clear')
     this.$auth.setUser(null)
   },
   methods: {
     onSubmit(credentials) {
       this.$store.dispatch('authServer/authenticate', credentials)
-      // .then(() => {
-      //  this.$router.push('/welcome')
-      // })
     },
   },
 }
