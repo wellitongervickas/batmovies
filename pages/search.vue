@@ -34,16 +34,13 @@ export default {
   },
   computed: {
     movies() {
-      return this.$store.state.searchMovies.results
+      return this.$store.state.searchMovies.items.results || []
     },
     loading() {
-      return this.$store.state.searchMovies.loading
+      return this.$store.state.searchMovies.items.loading
     },
   },
   beforeMount() {
-    this.$store.commit('searchMovies/clear')
-  },
-  mounted() {
     this.$store.commit('searchMovies/clear')
   },
   methods: {
@@ -52,7 +49,11 @@ export default {
     },
 
     searchMovies(query) {
-      this.$store.dispatch('searchMovies/search', query)
+      this.$store.dispatch('searchMovies/items', {
+        params: {
+          query,
+        },
+      })
     },
   },
 }

@@ -6,9 +6,11 @@ function mutationsGenerator(options = {}) {
       'items/error'(state, payload) {
         state.items.error = payload
       },
+
       'items/loading'(state, payload) {
         state.items.loading = payload
       },
+
       'items/results'(state, payload) {
         state.items.results = payload
       },
@@ -26,6 +28,7 @@ function mutationsGenerator(options = {}) {
       clear: (state) => {
         state = { ...statesGenerator() }
       },
+
       ...options.mutations,
     },
   }
