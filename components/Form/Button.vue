@@ -1,8 +1,9 @@
 <template>
   <button-container>
     <component
-      :is="type"
+      :is="is"
       v-bind="options"
+      :type="type"
       :disabled="disabled"
       @click="onClick"
     >
@@ -23,6 +24,10 @@ export default {
     ButtonContainer: styles.buttonContainer,
   },
   props: {
+    type: {
+      type: String,
+      default: 'submit',
+    },
     disabled: {
       type: Boolean,
       default: false,
@@ -46,7 +51,7 @@ export default {
         to: this.asLink ? this.to : null,
       }
     },
-    type() {
+    is() {
       if (this.asLink) {
         return 'nuxt-link'
       }
