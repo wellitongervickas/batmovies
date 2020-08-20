@@ -26,7 +26,11 @@ function mutationsGenerator(options = {}) {
       },
 
       clear: (state) => {
-        state = { ...statesGenerator() }
+        const newState = statesGenerator().state()
+
+        Object.keys(newState).forEach((key) => {
+          state[key] = newState[key]
+        })
       },
 
       ...options.mutations,
