@@ -42,3 +42,18 @@ export const movieContent = styled.div`
     margin-top: 2rem;
   }
 `
+export const movieFavorite = styled.div`
+  margin-bottom: 2rem;
+
+  & > svg {
+    cursor: pointer;
+
+    &:hover {
+      color: ${({ theme }) => theme.purple};
+    }
+  }
+
+  & > :nth-child(1) {
+    margin-right: 1rem;
+  }
+`

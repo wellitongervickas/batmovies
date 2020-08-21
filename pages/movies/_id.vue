@@ -7,6 +7,13 @@
         <img :src="postThumbnail" :alt="movie.title" />
       </movie-thumb-container>
       <movie-content>
+        <movie-favorite>
+          <font-awesome-icon icon="thumbs-up" @click="setFavoriteMovie(true)" />
+          <font-awesome-icon
+            icon="thumbs-down"
+            @click="setFavoriteMovie(false)"
+          />
+        </movie-favorite>
         <p>{{ movie.overview }}</p>
         <div>
           <font-awesome-icon icon="star" />
@@ -55,6 +62,7 @@ export default {
     MovieThumbContainer: styles.movieThumbContainer,
     MovieContent: styles.movieContent,
     MovieBadges: styles.movieBadges,
+    MovieFavorite: styles.movieFavorite,
   },
   computed: {
     postThumbnail() {
@@ -86,6 +94,16 @@ export default {
     getMovie(id) {
       this.$store.dispatch('movieDetails/item', {
         id,
+      })
+    },
+
+    setFavoriteMovie(favorite) {
+      this.$store.dispatch('favoriteMovies/favorite', {
+        account_id: this.$auth.user.id,
+        session_id: this.$auth.user.session_id,
+        media_type: 'movie',
+        media_id: this.$route.params.id,
+        favorite,
       })
     },
   },

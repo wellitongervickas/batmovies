@@ -1,23 +1,13 @@
-import { compile } from 'path-to-regexp'
+import { transformPath } from '@/helpers/api/path'
 
 function actionsGenerator(path, options = {}) {
-  const toPath = compile(path)
-
-  const transformPath = (payload) => {
-    try {
-      return toPath(payload)
-    } catch (err) {
-      return path
-    }
-  }
-
   return {
     actions: {
       async items({ commit }, payload) {
         commit('items/loading', true)
 
         const { results } = await this.$api.$get(
-          transformPath(payload),
+          transformPath(path, payload),
           payload
         )
         commit('items/results', results)
@@ -26,7 +16,10 @@ function actionsGenerator(path, options = {}) {
       async item({ commit }, payload) {
         commit('item/loading', true)
 
-        const result = await this.$api.$get(transformPath(payload), payload)
+        const result = await this.$api.$get(
+          transformPath(path, payload),
+          payload
+        )
 
         commit('item/result', result)
         commit('item/loading', false)
