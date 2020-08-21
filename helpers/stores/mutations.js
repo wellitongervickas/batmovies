@@ -1,29 +1,18 @@
 import statesGenerator from './states'
 
+export const mutationGenerator = (prefix, sufix) => ({
+  [`${prefix}/${sufix}`](state, payload) {
+    state[prefix][sufix] = payload
+  },
+})
+
 function mutationsGenerator(options = {}) {
   return {
     mutations: {
-      'items/error'(state, payload) {
-        state.items.error = payload
-      },
-
-      'items/loading'(state, payload) {
-        state.items.loading = payload
-      },
-
-      'items/results'(state, payload) {
-        state.items.results = payload
-      },
-
-      'item/error'(state, payload) {
-        state.item.error = payload
-      },
-      'item/loading'(state, payload) {
-        state.item.loading = payload
-      },
-      'item/result'(state, payload) {
-        state.item.result = payload
-      },
+      ...mutationGenerator('items', 'loading'),
+      ...mutationGenerator('items', 'results'),
+      ...mutationGenerator('item', 'loading'),
+      ...mutationGenerator('item', 'result'),
 
       clear: (state) => {
         const newState = statesGenerator().state()
