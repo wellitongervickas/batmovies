@@ -1,4 +1,4 @@
-export default function ({ $axios }, inject) {
+export default function ({ $axios, ...rest }, inject) {
   // Create a custom axios instance
   const api = $axios.create()
 
@@ -8,6 +8,10 @@ export default function ({ $axios }, inject) {
     config.params = {
       ...config.params,
       api_key: process.env.appApiKey,
+    }
+
+    if (rest.app.$auth.$state.user) {
+      config.params.session_id = rest.app.$auth.$state.user.session_id
     }
 
     return config

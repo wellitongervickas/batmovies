@@ -100,7 +100,6 @@ export default {
     setFavoriteMovie(favorite) {
       this.$store.dispatch('favoriteMovies/favorite', {
         account_id: this.$auth.user.id,
-        session_id: this.$auth.user.session_id,
         media_type: 'movie',
         media_id: this.$route.params.id,
         favorite,

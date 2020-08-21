@@ -17,10 +17,7 @@ export default {
       async favorite({ commit }, payload) {
         commit('favorite/loading', true)
 
-        const url = transformPath(
-          'account/:account_id/favorite\\?session_id=:session_id',
-          payload
-        )
+        const url = transformPath('account/:account_id/favorite', payload)
 
         await this.$api.$post(url, payload)
 
