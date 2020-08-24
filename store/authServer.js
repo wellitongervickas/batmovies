@@ -51,12 +51,18 @@ export const actions = {
         commit('loading', false)
       })
   },
-  guest() {
-    this.$api.$get('/authentication/guest_session/new').then((response) => {
-      this.$auth.setUser({
-        ...response,
+  guest({ commit }) {
+    commit('loading', true)
+    this.$api
+      .$get('/authentication/guest_session/new')
+      .then((response) => {
+        this.$auth.setUser({
+          ...response,
+        })
       })
-    })
+      .finally(() => {
+        commit('loading', false)
+      })
   },
   authenticate({ commit, dispatch }, credentials) {
     commit('loading', true)

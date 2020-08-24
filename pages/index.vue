@@ -7,7 +7,11 @@
       <form-button :as-link="true" to="/login" icon="arrow-right">
         Sign in
       </form-button>
-      <form-button icon="user-ninja" @click="createGuestSession">
+      <form-button
+        icon="user-ninja"
+        :disabled="loading"
+        @click="createGuestSession"
+      >
         Guest
       </form-button>
     </container-button>
@@ -27,6 +31,11 @@ export default {
     FormButton,
     Container: styles.container,
     ContainerButton: styles.containerButton,
+  },
+  computed: {
+    loading() {
+      return this.$store.state.authServer.loading
+    },
   },
   methods: {
     createGuestSession() {

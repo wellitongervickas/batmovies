@@ -45,10 +45,5 @@ export default {
     SidebarContent: styles.content,
   },
   mixins: [authenticated],
-  // computed: {
-  //   isAuthenticated() {
-  //     return this.$auth.user && this.$auth.user.id
-  //   },
-  // },
 }
 </script>
