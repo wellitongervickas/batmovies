@@ -42,7 +42,7 @@ export default {
   },
   computed: {
     userName() {
-      return this.$auth.user.name || this.$auth.user.username
+      return this.$auth.user.name || this.$auth.user.username || 'Guest'
     },
   },
 }

@@ -5,7 +5,10 @@
     </div>
     <container-button>
       <form-button :as-link="true" to="/login" icon="arrow-right">
-        Go to movies
+        Sign in
+      </form-button>
+      <form-button icon="user-ninja" @click="createGuestSession">
+        Guest
       </form-button>
     </container-button>
   </container>
@@ -24,6 +27,11 @@ export default {
     FormButton,
     Container: styles.container,
     ContainerButton: styles.containerButton,
+  },
+  methods: {
+    createGuestSession() {
+      this.$store.dispatch('authServer/guest')
+    },
   },
 }
 </script>

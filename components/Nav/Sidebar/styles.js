@@ -7,11 +7,7 @@ export const container = styled.div`
   justify-content: space-between;
 
   a {
-    width: 86%;
-
-    border-right: 6px solid transparent;
     transition: 0.6s;
-
     display: flex;
     justify-content: center;
     align-items: center;
@@ -29,10 +25,6 @@ export const container = styled.div`
 
   .nuxt-link-active {
     border-right: 6px solid ${({ theme }) => theme.primary};
-
-    @media screen and (max-width: ${({ theme }) => theme.breakPointMobile}) {
-      width: 76%;
-    }
   }
 `
 export const content = styled.div`

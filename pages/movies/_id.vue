@@ -7,7 +7,7 @@
         <img :src="postThumbnail" :alt="movie.title" />
       </movie-thumb-container>
       <movie-content>
-        <movie-favorite>
+        <movie-favorite v-if="isAuthenticated">
           <font-awesome-icon icon="thumbs-up" @click="setFavoriteMovie(true)" />
           <font-awesome-icon
             icon="thumbs-down"
@@ -43,6 +43,8 @@ import SubHeading from '@/components/Typography/SubHeading'
 import BadgesItem from '@/components/Badgets/Item'
 import Spinner from '@/components/Loadings/Spinner'
 
+import authenticated from '@/helpers/mixins/authenticated'
+
 import imgTest from '../../assets/empty.png'
 import * as styles from './styles'
 
@@ -64,6 +66,7 @@ export default {
     MovieBadges: styles.movieBadges,
     MovieFavorite: styles.movieFavorite,
   },
+  mixins: [authenticated],
   computed: {
     postThumbnail() {
       if (this.movie.poster_path) {
