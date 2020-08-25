@@ -12,7 +12,7 @@
         </nuxt-link>
         <nuxt-link
           v-if="isAuthenticated"
-          to="/favorite"
+          :to="favoriteRoute"
           title="Favorite movies"
         >
           <font-awesome-icon icon="star" />
@@ -39,6 +39,14 @@ export default {
     FontAwesomeIcon,
   },
   mixins: [authenticated],
+  computed: {
+    id() {
+      return this.$auth.user.id
+    },
+    favoriteRoute() {
+      return `/account/${this.$auth.user.id}`
+    },
+  },
 }
 </script>
 

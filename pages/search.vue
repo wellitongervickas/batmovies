@@ -9,7 +9,7 @@
         />
       </div>
       <sub-heading icon="list-ul">Results</sub-heading>
-      <movies-list :movies="movies" :loading="loading" />
+      <movies-list :movies="results" :loading="loading" />
     </div>
   </div>
 </template>
@@ -28,28 +28,34 @@ export default {
     SubHeading,
     SearchBar,
   },
-  computed: {
-    movies() {
-      return this.$store.state.searchMovies.items.results || []
-    },
-    loading() {
-      return this.$store.state.searchMovies.items.loading
-    },
+  data() {
+    return {
+      results: [],
+      loading: false,
+    }
   },
   beforeMount() {
     this.$store.commit('searchMovies/clear')
   },
   methods: {
     onSubmitQuery(value) {
+      this.loading = true
       this.searchMovies(value)
     },
 
     searchMovies(query) {
-      this.$store.dispatch('searchMovies/items', {
-        params: {
-          query,
-        },
-      })
+      this.$api
+        .$get('search/movie', {
+          params: {
+            query,
+          },
+        })
+        .then(({ results }) => {
+          this.results = results
+        })
+        .finally(() => {
+          this.loading = false
+        })
     },
   },
 }

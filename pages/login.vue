@@ -26,6 +26,7 @@ export default {
   },
   data() {
     return {
+      loading: false,
       section: [
         {
           id: 'username',
@@ -56,17 +57,54 @@ export default {
       },
     }
   },
-  computed: {
-    loading() {
-      return this.$store.state.authServer.loading
-    },
-  },
   beforeMount() {
     this.$auth.setUser(null)
   },
   methods: {
+    account(payload) {
+      this.$api
+        .$get('/account', payload)
+        .then((user) => {
+          this.$auth.setUser({
+            ...payload,
+            ...user,
+          })
+        })
+        .finally(() => {
+          this.loading = false
+        })
+    },
+    sessionNew(payload) {
+      this.$api
+        .$post('/authentication/session/new', payload)
+        .then((response) => {
+          this.account({
+            params: {
+              session_id: response.session_id,
+            },
+          })
+        })
+    },
+    validateWithLogin(payload) {
+      this.$api
+        .$post('/authentication/token/validate_with_login', payload)
+        .then((response) => {
+          this.sessionNew({
+            request_token: response.request_token,
+          })
+        })
+    },
+    tokenNew(credentials) {
+      this.$api.$get('/authentication/token/new').then((response) =>
+        this.validateWithLogin({
+          request_token: response.request_token,
+          ...credentials,
+        })
+      )
+    },
     onSubmit(credentials) {
-      this.$store.dispatch('authServer/authenticate', credentials)
+      this.loading = true
+      this.tokenNew(credentials)
     },
   },
 }

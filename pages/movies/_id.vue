@@ -27,9 +27,6 @@
       </div>
     </div>
   </div>
-  <div v-else-if="loading">
-    <spinner />
-  </div>
   <div v-else>
     No movie to show
   </div>
@@ -41,63 +38,45 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import Heading from '@/components/Typography/Heading'
 import SubHeading from '@/components/Typography/SubHeading'
 import BadgetsItem from '@/components/Badgets/Item'
-import Spinner from '@/components/Loadings/Spinner'
 
 import authenticated from '@/helpers/mixins/authenticated'
-
-import imgTest from '../../assets/empty.png'
 
 export default {
   middleware: 'auth',
   layout: 'dashboard',
-  name: 'MoviesDetails',
+  name: 'MovieId',
   components: {
     Heading,
     SubHeading,
     BadgetsItem,
-    Spinner,
 
     FontAwesomeIcon,
   },
   mixins: [authenticated],
+  async asyncData({ params, ...rest }) {
+    const movie = await rest.$api.$get(`movie/${params.id}`)
+
+    return {
+      movie,
+    }
+  },
   computed: {
     postThumbnail() {
       if (this.movie.poster_path) {
         return `${process.env.appApiThumbPathBig}/${this.movie.poster_path}`
       }
 
-      return imgTest
+      return this.movie.poster_path
     },
     genres() {
       return this.movie.genres.map((gender) => gender.name)
     },
-
-    loading() {
-      return this.$store.state.movieDetails.item.loading
-    },
-
-    movie() {
-      return this.$store.state.movieDetails.item.result
-    },
-  },
-  beforeMount() {
-    this.$store.commit('movieDetails/clear')
-  },
-  mounted() {
-    this.getMovie(this.$route.params.id)
   },
   methods: {
-    getMovie(id) {
-      this.$store.dispatch('movieDetails/item', {
-        id,
-      })
-    },
-
     setFavoriteMovie(favorite) {
-      this.$store.dispatch('favoriteMovies/favorite', {
-        account_id: this.$auth.user.id,
+      this.$api.$post(`account/${this.$auth.user.id}/favorite`, {
         media_type: 'movie',
-        media_id: this.$route.params.id,
+        media_id: this.movie.id,
         favorite,
       })
     },

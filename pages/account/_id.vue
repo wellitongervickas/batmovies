@@ -1,6 +1,6 @@
 <template>
   <div>
-    <sub-heading icon="fire">Popular Movies</sub-heading>
+    <sub-heading icon="laugh">My Movies</sub-heading>
     <movies-list :movies="results" />
   </div>
 </template>
@@ -12,13 +12,15 @@ import SubHeading from '@/components/Typography/SubHeading'
 export default {
   middleware: 'auth',
   layout: 'dashboard',
-  name: 'Welcome',
+  name: 'AccountId',
   components: {
     MoviesList,
     SubHeading,
   },
   async asyncData({ params, ...rest }) {
-    const { results } = await rest.$api.$get('trending/movies/week')
+    const { results } = await rest.$api.$get(
+      `/account/${params.id}/favorite/movies`
+    )
 
     return {
       results,

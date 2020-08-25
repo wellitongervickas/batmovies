@@ -28,14 +28,24 @@ export default {
     LogoMain,
     FormButton,
   },
-  computed: {
-    loading() {
-      return this.$store.state.authServer.loading
-    },
+  data() {
+    return {
+      loading: false,
+    }
   },
   methods: {
     createGuestSession() {
-      this.$store.dispatch('authServer/guest')
+      this.loading = true
+      this.$api
+        .$get('/authentication/guest_session/new')
+        .then((response) => {
+          this.$auth.setUser({
+            ...response,
+          })
+        })
+        .finally(() => {
+          this.loading = false
+        })
     },
   },
 }
