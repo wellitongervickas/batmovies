@@ -1,4 +1,4 @@
-const message = 'Field is required'
+export const message = 'Is required'
 
 const blank = (value = null) => {
   if ([null, undefined, ''].includes(value)) {
@@ -8,4 +8,7 @@ const blank = (value = null) => {
   return null
 }
 
-export default blank
+export default {
+  validate: blank,
+  message: () => message,
+}

@@ -36,14 +36,21 @@ describe('Logo Icon', () => {
   })
 
   test('have an icon logo with params', () => {
+    const defaultValue = '62'
+
     const wrapper = mount(Icon, {
       propsData: {
-        width: '62',
-        height: '62',
+        width: defaultValue,
+        height: defaultValue,
       },
     })
 
-    expect(wrapper.props().width).toBe('62')
-    expect(wrapper.props().height).toBe('62')
+    const imgElement = wrapper.find('img')
+
+    expect(wrapper.props().width).toBe(defaultValue)
+    expect(wrapper.props().height).toBe(defaultValue)
+
+    expect(imgElement.attributes('width')).toBe(defaultValue)
+    expect(imgElement.attributes('height')).toBe(defaultValue)
   })
 })

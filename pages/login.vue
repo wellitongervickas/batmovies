@@ -8,6 +8,7 @@
         :section="section"
         :button="button"
         :loading="loading"
+        :error="error"
         @submit="onSubmit"
       />
     </div>
@@ -26,6 +27,7 @@ export default {
   },
   data() {
     return {
+      error: null,
       loading: false,
       section: [
         {
@@ -47,6 +49,10 @@ export default {
           validations: [
             {
               type: 'blank',
+            },
+            {
+              type: 'greaterThan',
+              count: 4,
             },
           ],
         },
@@ -70,10 +76,14 @@ export default {
             ...user,
           })
         })
+        .catch((err) => {
+          this.error = err
+        })
         .finally(() => {
           this.loading = false
         })
     },
+
     sessionNew(payload) {
       this.$api
         .$post('/authentication/session/new', payload)
@@ -84,7 +94,12 @@ export default {
             },
           })
         })
+        .catch((err) => {
+          this.loading = false
+          this.error = err
+        })
     },
+
     validateWithLogin(payload) {
       this.$api
         .$post('/authentication/token/validate_with_login', payload)
@@ -93,17 +108,31 @@ export default {
             request_token: response.request_token,
           })
         })
-    },
-    tokenNew(credentials) {
-      this.$api.$get('/authentication/token/new').then((response) =>
-        this.validateWithLogin({
-          request_token: response.request_token,
-          ...credentials,
+        .catch((err) => {
+          this.loading = false
+          this.error = err
         })
-      )
     },
+
+    tokenNew(credentials) {
+      this.$api
+        .$get('/authentication/token/new')
+        .then((response) =>
+          this.validateWithLogin({
+            request_token: response.request_token,
+            ...credentials,
+          })
+        )
+        .catch((err) => {
+          this.loading = false
+          this.error = err
+        })
+    },
+
     onSubmit(credentials) {
+      this.error = null
       this.loading = true
+
       this.tokenNew(credentials)
     },
   },
@@ -120,6 +149,7 @@ export default {
 }
 
 .login-form-container {
-  margin: 2rem 0;
+  max-width: 16rem;
+  margin-top: 2rem;
 }
 </style>

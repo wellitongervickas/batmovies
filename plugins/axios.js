@@ -17,6 +17,10 @@ export default function ({ $axios, ...rest }, inject) {
     return config
   })
 
+  api.onResponseError((err) => {
+    throw err.response.data.status_message
+  })
+
   // Inject to context as $api
   inject('api', api)
 }

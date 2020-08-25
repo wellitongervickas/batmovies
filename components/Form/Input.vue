@@ -2,7 +2,7 @@
   <div class="form-input-container">
     <label :for="field.id">
       {{ field.label }}
-      <span v-if="isRequired(field)">*</span>
+      <span v-if="required">*</span>
     </label>
     <input
       :id="field.id"
@@ -10,9 +10,8 @@
       :name="field.id"
       :placeholder="field.placeholder"
       :type="field.type"
-      @input="input"
-      @change="change"
-      @blur="change"
+      @input="onInput"
+      @blur="onBlur"
     />
     <div v-if="error" class="form-input-error">
       {{ error }}
@@ -22,7 +21,6 @@
 
 <script>
 import validators from '@/helpers/validators'
-
 export default {
   name: 'FormInput',
   props: {
@@ -38,34 +36,43 @@ export default {
     }
   },
   methods: {
-    isRequired(field) {
+    required() {
+      const { field } = this
+
       return (
         field.validations &&
         field.validations.find((validation) => validation.type === 'blank')
       )
     },
 
-    validate() {
-      const { validations } = this.field
-      this.error = null
+    onError(error) {
+      this.error = error
+      this.$emit('error', error)
+    },
 
-      if (validations && validations.length) {
-        this.error = validations.reduce((text, validation) => {
-          text = validators[validation.type](this.value, validation)
-          return text
-        }, null)
+    onValidate(value) {
+      const { field } = this
+
+      if (field.validations && field.validations) {
+        const error = field.validations.find((validation) =>
+          validators[validation.type].validate(value, validation)
+        )
+
+        this.onError(error && validators[error.type].message(value, error))
+
+        return error
       }
 
-      return !!this.error
+      return null
     },
 
-    change() {
-      this.error = null
-      this.$emit('change', this.value)
+    onBlur({ target }) {
+      this.onValidate(target.value)
+      this.$emit('change', target.value)
     },
 
-    input() {
-      this.$emit('input', this.value)
+    onInput({ target }) {
+      this.$emit('input', target.value)
     },
   },
 }

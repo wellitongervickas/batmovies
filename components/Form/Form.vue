@@ -3,6 +3,9 @@
     <div v-for="field in section" :key="field.id" class="form-fields">
       <component :is="type(field.type)" ref="field" :field="field" />
     </div>
+    <div v-if="error" class="form-error">
+      {{ error }}
+    </div>
     <div class="form-buttons">
       <form-button :icon="button.icon" :disabled="loading" @click="onSubmit">
         {{ button.label }}
@@ -22,6 +25,10 @@ export default {
     FormButton,
   },
   props: {
+    error: {
+      type: String,
+      default: null,
+    },
     loading: {
       type: Boolean,
       default: false,
@@ -49,18 +56,18 @@ export default {
 
     onSubmit() {
       let map = {}
-      let error = true
 
       this.$refs.field.forEach((item) => {
-        error = item.validate()
-
         map = {
           ...map,
           [item.field.id]: item.value,
         }
       })
 
-      if (!error) {
+      if (
+        !this.$refs.field.filter((field) => field.onValidate(field.value))
+          .length
+      ) {
         this.submit(map)
       }
     },
