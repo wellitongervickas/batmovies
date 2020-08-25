@@ -1,9 +1,9 @@
 <template>
   <layout-container>
-    <div class="container">
+    <div class="dashboard-container">
       <nav-sidebar />
-      <div class="content">
-        <div class="greeting">Welcome, {{ userName }}</div>
+      <div class="dashboard-content-container">
+        <div class="dashboard-greeting-container">Welcome, {{ userName }}</div>
         <Nuxt />
       </div>
     </div>
@@ -32,20 +32,22 @@ export default {
 <style lang="scss" scoped>
 @import '~/assets/scss/_variables';
 
-.container {
+.dashboard-container {
   display: flex;
   height: 100vh;
+}
 
-  .content {
-    color: $secondary;
-    padding: 2rem;
-    overflow-y: auto;
-    width: 100%;
-  }
+.dashboard-content-container {
+  color: $secondary;
+  padding: 2rem;
+  overflow-y: auto;
+  width: 100%;
+}
 
-  .greeting {
-    margin-bottom: 2rem;
-    color: $gray;
-  }
+.dashboard-greeting-container {
+  margin-bottom: 2rem;
+  color: $gray;
+  font-size: $fontBig;
+  font-weight: $bold;
 }
 </style>

@@ -1,13 +1,15 @@
 <template>
-  <div class="container">
-    <div class="main-icon">
+  <div class="logo-main-container">
+    <div class="logo-main-icon-container">
       <icon height="42" />
     </div>
     <div>
       <strong>Bat</strong>
       <span>Movies</span>
     </div>
-    <div class="description">A better way to watch your movies</div>
+    <div class="logo-main-description-container">
+      A better way to watch your movies
+    </div>
   </div>
 </template>
 
@@ -25,14 +27,14 @@ export default {
 <style lang="scss" scoped>
 @import '~/assets/scss/_variables';
 
-.description {
+.logo-main-description-container {
   display: block;
   color: $secondary;
   font-family: $fontFamily;
   font-size: $fontSize;
   margin: 0;
 }
-.container {
+.logo-main-container {
   user-select: none;
   text-align: center;
   animation: 1s appear;
@@ -52,7 +54,7 @@ export default {
     }
   }
 }
-.main-icon {
+.logo-main-icon-container {
   position: absolute;
   top: -35px;
   left: 25px;

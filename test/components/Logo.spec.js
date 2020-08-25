@@ -38,12 +38,12 @@ describe('Logo Icon', () => {
   test('have an icon logo with params', () => {
     const wrapper = mount(Icon, {
       propsData: {
-        width: 62,
-        height: 62,
+        width: '62',
+        height: '62',
       },
     })
 
-    expect(wrapper.props().width).toBe(62)
-    expect(wrapper.props().height).toBe(62)
+    expect(wrapper.props().width).toBe('62')
+    expect(wrapper.props().height).toBe('62')
   })
 })

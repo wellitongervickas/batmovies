@@ -1,12 +1,12 @@
 <template>
-  <div class="container">
+  <div class="nav-sidebar-container">
     <div>
-      <div class="sidebar-logo">
+      <div class="nav-sidebar-logo-container">
         <nuxt-link to="/welcome" title="Welcome">
           <logo-icon width="42" />
         </nuxt-link>
       </div>
-      <div class="sidebar-content">
+      <div class="nav-sidebar-content-container">
         <nuxt-link to="/search" title="Search">
           <font-awesome-icon icon="search" />
         </nuxt-link>
@@ -45,7 +45,7 @@ export default {
 <style lang="scss" scoped>
 @import '~/assets/scss/_variables';
 
-.container {
+.nav-sidebar-container {
   background-color: rgba(255, 255, 255, 0.1);
   display: flex;
   flex-direction: column;
@@ -78,14 +78,14 @@ export default {
   }
 }
 
-.content {
+.nav-sidebar-content-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.sidebar-logo {
+.nav-sidebar-logo-container {
   background-color: rgba(0, 0, 0, 0.2);
   margin: 0.6rem;
   border-radius: 0.6rem;

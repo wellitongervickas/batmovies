@@ -1,6 +1,6 @@
 <template>
-  <div class="container">
-    <div class="content-container">
+  <div class="layout-container">
+    <div class="layout-container-content">
       <slot />
     </div>
   </div>
@@ -15,7 +15,7 @@ export default {
 <style lang="scss" scoped>
 @import '~/assets/scss/_variables';
 
-.container {
+.layout-container {
   background-color: $dark;
   background-image: url('~assets/home-bg.jpg');
   background-blend-mode: multiply;
@@ -24,7 +24,7 @@ export default {
   height: 100vh;
 }
 
-.content-container {
+.layout-container-content {
   margin: 0 auto;
   width: 100%;
 }

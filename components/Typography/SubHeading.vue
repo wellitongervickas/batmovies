@@ -1,5 +1,5 @@
 <template>
-  <h2>
+  <h2 class="typography-subheading">
     <font-awesome-icon v-if="icon" :icon="icon" />
     <span>
       <slot />
@@ -24,7 +24,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-h2 {
+h2.typography-subheading {
   margin-bottom: 1rem;
 }
 </style>

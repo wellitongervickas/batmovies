@@ -1,5 +1,5 @@
 <template>
-  <div class="button-container">
+  <div class="form-button-container">
     <component
       :is="is"
       v-bind="options"
@@ -68,7 +68,7 @@ export default {
 <style lang="scss" scoped>
 @import '~/assets/scss/_variables';
 
-.button-container {
+.form-button-container {
   button,
   a {
     line-height: 1.4rem;

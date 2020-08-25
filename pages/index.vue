@@ -1,9 +1,9 @@
 <template>
-  <div class="container">
+  <div class="index-container">
     <div>
       <logo-main />
     </div>
-    <div class="buttons">
+    <div class="index-buttons-container">
       <form-button :as-link="true" to="/login" icon="arrow-right">
         Sign in
       </form-button>
@@ -44,14 +44,15 @@ export default {
 <style lang="scss" scoped>
 @import '~/assets/scss/_variables';
 
-.container {
+.index-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 100vh;
 }
 
-.buttons {
+.index-buttons-container {
   margin-top: 2rem;
   display: flex;
 

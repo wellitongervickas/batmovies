@@ -1,9 +1,9 @@
 <template>
-  <div class="container">
+  <div class="login-container">
     <div>
       <logo-main />
     </div>
-    <div class="form">
+    <div class="login-form-container">
       <Form
         :section="section"
         :button="button"
@@ -73,14 +73,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.container {
+.login-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 100vh;
 }
 
-.form {
+.login-form-container {
   margin: 2rem 0;
 }
 </style>

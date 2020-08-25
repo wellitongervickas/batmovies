@@ -1,8 +1,8 @@
 <template>
   <nuxt-link :to="postUrl">
-    <div class="container">
+    <div class="movies-item-container">
       <img :src="postThumbnail" :alt="movie.title" height="330" />
-      <div class="details">
+      <div class="movies-item-details-container">
         <div>
           {{ movie.title }}
         </div>
@@ -47,7 +47,7 @@ export default {
 <style lang="scss" scoped>
 @import '~/assets/scss/_variables';
 
-.container {
+.movies-item-container {
   position: relative;
   background-color: $black;
   overflow: hidden;
@@ -70,7 +70,7 @@ export default {
     background-color: $dark;
   }
 }
-.details {
+.movies-item-details-container {
   background-color: rgba(0, 0, 0, 0.7);
   padding: 0.6rem;
   border-radius: 0.6rem;

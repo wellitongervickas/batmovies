@@ -1,9 +1,9 @@
 <template>
   <div>
-    <div v-for="field in section" :key="field.id" class="fields">
+    <div v-for="field in section" :key="field.id" class="form-fields">
       <component :is="type(field.type)" ref="field" :field="field" />
     </div>
-    <div class="buttons">
+    <div class="form-buttons">
       <form-button :icon="button.icon" :disabled="loading" @click="onSubmit">
         {{ button.label }}
       </form-button>
@@ -73,7 +73,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.buttons {
+.form-buttons {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -81,7 +81,7 @@ export default {
   margin-top: 2rem;
 }
 
-.fields {
+.form-fields {
   margin-bottom: 1rem;
 
   &:last-of-type {

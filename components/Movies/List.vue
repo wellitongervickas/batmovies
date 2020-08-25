@@ -1,5 +1,5 @@
 <template>
-  <div v-if="movies.length" class="container">
+  <div v-if="movies.length" class="movies-list-container">
     <movies-item v-for="movie in movies" :key="movie.id" :movie="movie" />
   </div>
   <div v-else-if="loading">
@@ -37,7 +37,7 @@ export default {
 <style lang="scss" scoped>
 @import '~/assets/scss/_variables';
 
-.container {
+.movies-list-container {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-gap: 1.6rem;

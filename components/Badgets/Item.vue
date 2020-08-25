@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="badgets-container">
     <slot />
   </div>
 </template>
@@ -13,7 +13,7 @@ export default {
 <style lang="scss" scoped>
 @import '~/assets/scss/_variables';
 
-.container {
+.badgets-container {
   background-color: $purple;
   padding: 0 0.6rem;
   border-radius: 0.6rem;

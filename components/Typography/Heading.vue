@@ -1,5 +1,5 @@
 <template>
-  <h1>
+  <h1 class="typepography-heading">
     <font-awesome-icon v-if="icon" :icon="icon" />
     <span>
       <slot />
@@ -25,7 +25,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-h1 {
+h1.typepography-heading {
   margin-bottom: 1rem;
 }
 </style>

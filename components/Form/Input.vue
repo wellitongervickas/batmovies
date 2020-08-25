@@ -1,5 +1,5 @@
 <template>
-  <div class="input-container">
+  <div class="form-input-container">
     <label :for="field.id">
       {{ field.label }}
       <span v-if="isRequired(field)">*</span>
@@ -14,7 +14,7 @@
       @change="change"
       @blur="change"
     />
-    <div v-if="error" class="input-error">
+    <div v-if="error" class="form-input-error">
       {{ error }}
     </div>
   </div>
@@ -74,7 +74,7 @@ export default {
 <style lang="scss" scoped>
 @import '~/assets/scss/_variables';
 
-.input-container {
+.form-input-container {
   display: flex;
   flex-direction: column;
 
@@ -107,7 +107,7 @@ export default {
     box-shadow: 0 0 0.6rem $primary;
   }
 }
-.input-error {
+.form-input-error {
   background-color: $primary;
   color: $secondary;
   opacity: 0.7;

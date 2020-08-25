@@ -1,10 +1,10 @@
 <template>
   <div>
-    <div class="container">
-      <div class="field">
+    <div class="search-bar-container">
+      <div class="search-bar-field-container">
         <form-input :field="field" @input="onChange" />
       </div>
-      <div class="button">
+      <div class="search-bar-button-container">
         <form-button icon="search" :disabled="!query" @click="onSubmit" />
       </div>
     </div>
@@ -65,7 +65,7 @@ export default {
 <style lang="scss" scoped>
 @import '~/assets/scss/_variables';
 
-.container {
+.search-bar-container {
   display: flex;
   justify-content: flex-start;
   align-items: flex-end;
@@ -77,7 +77,7 @@ export default {
   }
 }
 
-.button {
+.search-bar-button-container {
   margin-left: 1rem;
 
   @media screen and (max-width: $breakPointMobile) {
@@ -93,7 +93,7 @@ export default {
   }
 }
 
-.field {
+.search-bar-field-container {
   flex: 1;
 
   @media screen and (max-width: $breakPointMobile) {
