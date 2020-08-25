@@ -66,7 +66,7 @@ export default {
         .$get('/account', payload)
         .then((user) => {
           this.$auth.setUser({
-            ...payload,
+            ...payload.params,
             ...user,
           })
         })

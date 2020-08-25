@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <div class="container">
+      <div class="search-container">
         <search-bar
           title="Search"
           placeholder="Search a movie, tv show or whatever"
@@ -34,9 +34,6 @@ export default {
       loading: false,
     }
   },
-  beforeMount() {
-    this.$store.commit('searchMovies/clear')
-  },
   methods: {
     onSubmitQuery(value) {
       this.loading = true
@@ -62,7 +59,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.container {
+.search-container {
   margin-bottom: 1rem;
 }
 </style>
