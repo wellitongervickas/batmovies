@@ -1,6 +1,9 @@
 import blank from '@/helpers/validators/blank'
 
 describe('Helpers validators blank', () => {
+  test('should be defined', () => {
+    expect(blank).toBeDefined()
+  })
   test('should return a message when wrong value', () => {
     expect(blank()).toBe('Field is required')
     expect(blank(null)).toBe('Field is required')

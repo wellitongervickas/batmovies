@@ -18,8 +18,7 @@
     "@nuxtjs/axios": "^5.12.0",
     "@nuxtjs/pwa": "^3.0.0-beta.20",
     "nuxt": "^2.14.0",
-    "path-to-regexp": "^6.1.0",
-    "vue-styled-components": "^1.5.1"
+    "path-to-regexp": "^6.1.0"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.30",
@@ -27,7 +26,6 @@
     "@fortawesome/vue-fontawesome": "^0.1.10",
     "@nuxtjs/eslint-config": "^3.1.0",
     "@nuxtjs/eslint-module": "^2.0.0",
-    "@nuxtjs/google-fonts": "^1.0.0",
     "@vue/test-utils": "^1.0.3",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "^10.1.0",
@@ -38,8 +36,12 @@
     "eslint-plugin-prettier": "^3.1.4",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^26.1.0",
+    "node-sass": "^4.14.1",
     "nuxt-fontawesome": "^0.4.0",
     "prettier": "^2.0.5",
+    "pug": "^3.0.0",
+    "pug-plain-loader": "^1.0.0",
+    "sass-loader": "^10.0.0",
     "vue-jest": "^3.0.4"
   }
 }

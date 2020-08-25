@@ -1,39 +1,55 @@
 <template>
-  <container>
+  <div class="container">
     <div>
       <logo-main />
     </div>
-    <form-container>
+    <div class="form">
       <Form
         :section="section"
         :button="button"
         :loading="loading"
         @submit="onSubmit"
       />
-    </form-container>
-  </container>
+    </div>
+  </div>
 </template>
 
 <script>
 import Form from '@/components/Form/Form'
 import LogoMain from '@/components/Logo/Main'
 
-import * as styles from './styles/login'
-import section from './sections/login'
-
 export default {
   name: 'Login',
   components: {
     Form,
-    FormContainer: styles.formContainer,
-
     LogoMain,
-
-    Container: styles.container,
   },
   data() {
     return {
-      section: section(),
+      section: [
+        {
+          id: 'username',
+          type: 'text',
+          label: 'Username',
+          placeholder: 'Type your username',
+          validations: [
+            {
+              type: 'blank',
+            },
+          ],
+        },
+        {
+          id: 'password',
+          type: 'password',
+          label: 'Password',
+          placeholder: 'Type your password',
+          validations: [
+            {
+              type: 'blank',
+            },
+          ],
+        },
+      ],
       button: {
         label: 'Sign in',
         icon: 'sign-in-alt',
@@ -55,3 +71,16 @@ export default {
   },
 }
 </script>
+
+<style lang="scss" scoped>
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.form {
+  margin: 2rem 0;
+}
+</style>

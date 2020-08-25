@@ -1,9 +1,9 @@
 <template>
-  <container>
+  <div class="container">
     <div>
       <logo-main />
     </div>
-    <container-button>
+    <div class="buttons">
       <form-button :as-link="true" to="/login" icon="arrow-right">
         Sign in
       </form-button>
@@ -14,23 +14,19 @@
       >
         Guest
       </form-button>
-    </container-button>
-  </container>
+    </div>
+  </div>
 </template>
 
 <script>
 import FormButton from '@/components/Form/Button'
 import LogoMain from '@/components/Logo/Main'
 
-import * as styles from './styles/index'
-
 export default {
   name: 'Index',
   components: {
     LogoMain,
     FormButton,
-    Container: styles.container,
-    ContainerButton: styles.containerButton,
   },
   computed: {
     loading() {
@@ -44,3 +40,32 @@ export default {
   },
 }
 </script>
+
+<style lang="scss" scoped>
+@import '~/assets/scss/_variables';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttons {
+  margin-top: 2rem;
+  display: flex;
+
+  @media screen and (max-width: $breakPointMobile) {
+    flex-direction: column;
+  }
+
+  & > div:first-child {
+    margin-right: 1rem;
+
+    @media screen and (max-width: $breakPointMobile) {
+      margin-right: 0;
+      margin-bottom: 1rem;
+    }
+  }
+}
+</style>

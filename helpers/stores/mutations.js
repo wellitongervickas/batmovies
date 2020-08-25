@@ -1,7 +1,7 @@
 import statesGenerator from './states'
 
 export const mutationGenerator = (prefix, sufix) => ({
-  [`${prefix}/${sufix}`](state, payload) {
+  [`${prefix}${sufix && `/${sufix}`}`](state, payload) {
     state[prefix][sufix] = payload
   },
 })

@@ -1,5 +1,5 @@
 <template>
-  <button-container>
+  <div class="button-container">
     <component
       :is="is"
       v-bind="options"
@@ -10,18 +10,16 @@
       <slot />
       <font-awesome-icon v-if="icon" :icon="icon" />
     </component>
-  </button-container>
+  </div>
 </template>
 
 <script>
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import * as styles from './styles'
 
 export default {
   name: 'FormButton',
   components: {
     FontAwesomeIcon,
-    ButtonContainer: styles.buttonContainer,
   },
   props: {
     type: {
@@ -66,3 +64,46 @@ export default {
   },
 }
 </script>
+
+<style lang="scss" scoped>
+@import '~/assets/scss/_variables';
+
+.button-container {
+  button,
+  a {
+    line-height: 1.4rem;
+    font-size: $fontSize;
+    color: $secondary;
+    text-align: center;
+    display: block;
+    cursor: pointer;
+
+    padding: 0.6rem 2rem;
+    border-radius: 0.6rem;
+    background-color: $primary;
+    font-weight: $bold;
+    box-shadow: 0 0 0.6rem $primary;
+    transition: 0.5s;
+  }
+
+  button:hover,
+  button:focus,
+  a:hover,
+  a:active {
+    box-shadow: 0 0 1rem $primary;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  button {
+    border: none;
+    outline: none;
+
+    &:disabled {
+      opacity: 0.5;
+    }
+  }
+}
+</style>

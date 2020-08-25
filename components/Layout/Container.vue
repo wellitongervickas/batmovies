@@ -1,29 +1,31 @@
 <template>
-  <container :usebackground="useBackground">
-    <container-content :breakpoint="breakpoint">
+  <div class="container">
+    <div class="content-container">
       <slot />
-    </container-content>
-  </container>
+    </div>
+  </div>
 </template>
 
 <script>
-import { container, content } from './styles'
-
 export default {
   name: 'LayoutContainer',
-  components: {
-    Container: container,
-    ContainerContent: content,
-  },
-  props: {
-    useBackground: {
-      type: Boolean,
-      default: true,
-    },
-    breakpoint: {
-      type: [Number, String],
-      default: 'auto',
-    },
-  },
 }
 </script>
+
+<style lang="scss" scoped>
+@import '~/assets/scss/_variables';
+
+.container {
+  background-color: $dark;
+  background-image: url('~assets/home-bg.jpg');
+  background-blend-mode: multiply;
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+}
+
+.content-container {
+  margin: 0 auto;
+  width: 100%;
+}
+</style>

@@ -40,6 +40,9 @@ describe('Pages Welcome', () => {
       localVue,
     })
     expect(wrapper.vm).toBeTruthy()
+    expect(wrapper.vm.$store.state.trendingMovies.items.results).toHaveLength(
+      20
+    )
 
     const movieElement = wrapper.findAllComponents(MoviesItem).at(0)
     expect(movieElement.exists()).toBeTruthy()

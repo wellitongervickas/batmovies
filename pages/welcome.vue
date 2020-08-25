@@ -1,9 +1,7 @@
 <template>
   <div>
-    <div>
-      <sub-heading icon="fire">Popular Movies</sub-heading>
-      <movies-list :movies="trendingMovies" :loading="loading" />
-    </div>
+    <sub-heading icon="fire">Popular Movies</sub-heading>
+    <movies-list :movies="trendingMovies" :loading="loading" />
   </div>
 </template>
 

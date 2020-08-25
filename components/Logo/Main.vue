@@ -1,27 +1,65 @@
 <template>
-  <container>
-    <MainIcon>
+  <div class="container">
+    <div class="main-icon">
       <icon height="42" />
-    </MainIcon>
-    <first-name>Bat</first-name>
-    <last-name>Movies</last-name>
-    <description>A better way to watch your movies</description>
-  </container>
+    </div>
+    <div>
+      <strong>Bat</strong>
+      <span>Movies</span>
+    </div>
+    <div class="description">A better way to watch your movies</div>
+  </div>
 </template>
 
 <script>
 import Icon from '@/components/Logo/Icon'
-import * as styles from './styles'
 
 export default {
   name: 'LogoMain',
   components: {
     Icon,
-    MainIcon: styles.mainIcon,
-    Container: styles.container,
-    FirstName: styles.firstName,
-    LastName: styles.lastName,
-    Description: styles.description,
   },
 }
 </script>
+
+<style lang="scss" scoped>
+@import '~/assets/scss/_variables';
+
+.description {
+  display: block;
+  color: $secondary;
+  font-family: $fontFamily;
+  font-size: $fontSize;
+  margin: 0;
+}
+.container {
+  user-select: none;
+  text-align: center;
+  animation: 1s appear;
+  margin: auto;
+  position: relative;
+  font-size: $fontSuperBigger;
+  font-family: $fontFamilySecondary;
+  color: $primary;
+
+  @media screen and (max-width: $breakPointMobile) {
+    font-size: $fontSuperBig;
+  }
+
+  @keyframes appear {
+    0% {
+      opacity: 0;
+    }
+  }
+}
+.main-icon {
+  position: absolute;
+  top: -35px;
+  left: 25px;
+
+  @media screen and (min-width: $breakPointMobile) {
+    top: -45px;
+    left: 15px;
+  }
+}
+</style>

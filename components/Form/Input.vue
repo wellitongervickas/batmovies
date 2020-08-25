@@ -1,5 +1,5 @@
 <template>
-  <field-container>
+  <div class="input-container">
     <label :for="field.id">
       {{ field.label }}
       <span v-if="isRequired(field)">*</span>
@@ -14,22 +14,17 @@
       @change="change"
       @blur="change"
     />
-    <field-error v-if="error">
+    <div v-if="error" class="input-error">
       {{ error }}
-    </field-error>
-  </field-container>
+    </div>
+  </div>
 </template>
 
 <script>
 import validators from '@/helpers/validators'
-import * as styles from './styles'
 
 export default {
   name: 'FormInput',
-  components: {
-    FieldContainer: styles.fieldContainer,
-    FieldError: styles.errorContainer,
-  },
   props: {
     field: {
       type: Object,
@@ -75,3 +70,49 @@ export default {
   },
 }
 </script>
+
+<style lang="scss" scoped>
+@import '~/assets/scss/_variables';
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+
+  label {
+    color: $secondary;
+    display: block;
+    margin-bottom: 0.3rem;
+
+    span {
+      color: $red;
+    }
+  }
+
+  input {
+    appearance: none;
+    min-width: 0;
+    max-width: 100%;
+    color: $secondary;
+    outline: none;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 0.6rem;
+    border: 2px solid $primary;
+    line-height: $lineHeight * 2;
+    padding: 0 0.6rem;
+
+    transition: 0.5s;
+  }
+
+  input:focus {
+    box-shadow: 0 0 0.6rem $primary;
+  }
+}
+.input-error {
+  background-color: $primary;
+  color: $secondary;
+  opacity: 0.7;
+  padding: 0.4rem 0.6rem;
+  border-radius: 0.6rem;
+  margin-top: 1rem;
+}
+</style>

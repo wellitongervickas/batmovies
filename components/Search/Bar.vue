@@ -1,13 +1,13 @@
 <template>
   <div>
-    <search-bar-container>
-      <search-bar-field>
+    <div class="container">
+      <div class="field">
         <form-input :field="field" @input="onChange" />
-      </search-bar-field>
-      <search-bar-button>
+      </div>
+      <div class="button">
         <form-button icon="search" :disabled="!query" @click="onSubmit" />
-      </search-bar-button>
-    </search-bar-container>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -15,17 +15,11 @@
 import FormInput from '@/components/Form/Input'
 import FormButton from '@/components/Form/Button'
 
-import * as styles from './styles'
-
 export default {
   name: 'SearchBar',
   components: {
-    FormInput,
     FormButton,
-
-    SearchBarContainer: styles.searchBarContainer,
-    SearchBarButton: styles.searchBarButton,
-    SearchBarField: styles.searchBarField,
+    FormInput,
   },
   props: {
     title: {
@@ -67,3 +61,44 @@ export default {
   },
 }
 </script>
+
+<style lang="scss" scoped>
+@import '~/assets/scss/_variables';
+
+.container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+
+  @media screen and (max-width: $breakPointMobile) {
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+}
+
+.button {
+  margin-left: 1rem;
+
+  @media screen and (max-width: $breakPointMobile) {
+    margin-left: 0;
+    margin-top: 1rem;
+
+    flex: 1;
+
+    &,
+    button {
+      width: 100%;
+    }
+  }
+}
+
+.field {
+  flex: 1;
+
+  @media screen and (max-width: $breakPointMobile) {
+    flex: 1;
+    width: 100%;
+  }
+}
+</style>

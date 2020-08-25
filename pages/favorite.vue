@@ -1,9 +1,7 @@
 <template>
   <div>
-    <div>
-      <sub-heading icon="laugh">My Movies</sub-heading>
-      <movies-list :movies="favoriteMovies" :loading="loading" />
-    </div>
+    <sub-heading icon="laugh">My Movies</sub-heading>
+    <movies-list :movies="favoriteMovies" :loading="loading" />
   </div>
 </template>
 

@@ -1,13 +1,13 @@
 <template>
   <div>
     <div>
-      <search-container>
+      <div class="container">
         <search-bar
           title="Search"
           placeholder="Search a movie, tv show or whatever"
           @submit="onSubmitQuery"
         />
-      </search-container>
+      </div>
       <sub-heading icon="list-ul">Results</sub-heading>
       <movies-list :movies="movies" :loading="loading" />
     </div>
@@ -19,8 +19,6 @@ import SearchBar from '@/components/Search/Bar'
 import MoviesList from '@/components/Movies/List'
 import SubHeading from '@/components/Typography/SubHeading'
 
-import * as styles from './styles/search'
-
 export default {
   middleware: 'auth',
   layout: 'dashboard',
@@ -29,8 +27,6 @@ export default {
     MoviesList,
     SubHeading,
     SearchBar,
-
-    SearchContainer: styles.searchContainer,
   },
   computed: {
     movies() {
@@ -58,3 +54,9 @@ export default {
   },
 }
 </script>
+
+<style lang="scss" scoped>
+.container {
+  margin-bottom: 1rem;
+}
+</style>

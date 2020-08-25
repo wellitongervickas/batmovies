@@ -2,30 +2,30 @@
   <div v-if="movie">
     <heading icon="film">{{ movie.title }}</heading>
     <sub-heading>{{ movie.tagline }}</sub-heading>
-    <movie-container>
-      <movie-thumb-container>
+    <div class="movie-container">
+      <div class="movie-thumb-container">
         <img :src="postThumbnail" :alt="movie.title" />
-      </movie-thumb-container>
-      <movie-content>
-        <movie-favorite v-if="isAuthenticated">
+      </div>
+      <div class="movie-content">
+        <div v-if="isAuthenticated" class="movie-favorite">
           <font-awesome-icon icon="thumbs-up" @click="setFavoriteMovie(true)" />
           <font-awesome-icon
             icon="thumbs-down"
             @click="setFavoriteMovie(false)"
           />
-        </movie-favorite>
+        </div>
         <p>{{ movie.overview }}</p>
         <div>
           <font-awesome-icon icon="star" />
           {{ movie.vote_average }}
         </div>
-        <movie-badges>
-          <badges-item v-for="gender in genres" :key="gender">
+        <div class="movie-badgets">
+          <badgets-item v-for="gender in genres" :key="gender">
             {{ gender }}
-          </badges-item>
-        </movie-badges>
-      </movie-content>
-    </movie-container>
+          </badgets-item>
+        </div>
+      </div>
+    </div>
   </div>
   <div v-else-if="loading">
     <spinner />
@@ -40,13 +40,12 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 import Heading from '@/components/Typography/Heading'
 import SubHeading from '@/components/Typography/SubHeading'
-import BadgesItem from '@/components/Badgets/Item'
+import BadgetsItem from '@/components/Badgets/Item'
 import Spinner from '@/components/Loadings/Spinner'
 
 import authenticated from '@/helpers/mixins/authenticated'
 
 import imgTest from '../../assets/empty.png'
-import * as styles from './styles'
 
 export default {
   middleware: 'auth',
@@ -55,16 +54,10 @@ export default {
   components: {
     Heading,
     SubHeading,
-    BadgesItem,
+    BadgetsItem,
     Spinner,
 
     FontAwesomeIcon,
-
-    MovieContainer: styles.movieContainer,
-    MovieThumbContainer: styles.movieThumbContainer,
-    MovieContent: styles.movieContent,
-    MovieBadges: styles.movieBadges,
-    MovieFavorite: styles.movieFavorite,
   },
   mixins: [authenticated],
   computed: {
@@ -111,3 +104,66 @@ export default {
   },
 }
 </script>
+
+<style lang="scss" scoped>
+@import '~/assets/scss/_variables';
+
+.movie-badgets {
+  margin-top: 1rem;
+}
+
+.movie-container {
+  display: flex;
+
+  @media screen and (max-width: $breakPointMobile) {
+    flex-direction: column;
+  }
+}
+
+.movie-thumb-container {
+  text-align: center;
+
+  img {
+    min-width: 300px;
+    border-radius: 1rem;
+    border: 2px solid $primary;
+    box-shadow: 0 0 0.6rem $primary;
+    background-color: $black;
+    object-fit: cover;
+
+    @media screen and (max-width: $breakPointMobile) {
+      min-width: 100%;
+    }
+  }
+}
+
+.movie-content {
+  p {
+    margin-bottom: 2rem;
+  }
+
+  @media (min-width: $breakPointMobile) {
+    margin-left: 2rem;
+  }
+
+  @media screen and (max-width: $breakPointMobile) {
+    margin-top: 2rem;
+  }
+}
+
+.movie-favorite {
+  margin-bottom: 2rem;
+
+  & > svg {
+    cursor: pointer;
+
+    &:hover {
+      color: $purple;
+    }
+  }
+
+  & > :nth-child(1) {
+    margin-right: 1rem;
+  }
+}
+</style>

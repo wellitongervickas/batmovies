@@ -1,13 +1,13 @@
 <template>
   <div>
-    <form-fields v-for="field in section" :key="field.id">
+    <div v-for="field in section" :key="field.id" class="fields">
       <component :is="type(field.type)" ref="field" :field="field" />
-    </form-fields>
-    <form-buttons>
+    </div>
+    <div class="buttons">
       <form-button :icon="button.icon" :disabled="loading" @click="onSubmit">
         {{ button.label }}
       </form-button>
-    </form-buttons>
+    </div>
   </div>
 </template>
 
@@ -15,16 +15,11 @@
 import FormInput from '@/components/Form/Input'
 import FormButton from '@/components/Form/Button'
 
-import * as styles from './styles'
-
 export default {
   name: 'Form',
   components: {
     FormInput,
     FormButton,
-
-    FormFields: styles.fields,
-    FormButtons: styles.buttons,
   },
   props: {
     loading: {
@@ -76,3 +71,21 @@ export default {
   },
 }
 </script>
+
+<style lang="scss" scoped>
+.buttons {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.fields {
+  margin-bottom: 1rem;
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+}
+</style>
