@@ -1,7 +1,7 @@
 <template>
-  <nuxt-link :to="postUrl">
+  <nuxt-link v-if="movie && movie.id" :to="href(movie)">
     <div class="movies-item-container">
-      <img :src="postThumbnail" :alt="movie.title" height="330" />
+      <img :src="thumbnail(movie)" :alt="movie.title" height="330" />
       <div class="movies-item-details-container">
         <div>
           {{ movie.title }}
@@ -29,16 +29,15 @@ export default {
       default: () => {},
     },
   },
-  computed: {
-    postUrl() {
-      return `/movies/${this.movie.id}`
+  methods: {
+    href(movie) {
+      return `/movies/${movie.id}`
     },
-    postThumbnail() {
-      if (this.movie.poster_path) {
-        return `${process.env.appApiThumbPath}/${this.movie.poster_path}`
-      }
 
-      return this.movie.poster_path
+    thumbnail(movie) {
+      return `${process.env.appApiThumbPath}/${
+        movie.poster_path || movie.backdrop_path
+      }`
     },
   },
 }
