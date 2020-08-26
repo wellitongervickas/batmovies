@@ -6,7 +6,7 @@
         <div>
           {{ movie.title }}
         </div>
-        <div>
+        <div class="movie-average-container">
           <font-awesome-icon icon="star" />
           {{ movie.vote_average }}
         </div>

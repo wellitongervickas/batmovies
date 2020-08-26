@@ -96,9 +96,10 @@ describe('Movies Item', () => {
 
     const movieItem = wrapper.findComponent(MoviesItem)
     const imgElement = movieItem.find('img')
+    const averageElement = movieItem.find('.movie-average-container')
 
+    expect(averageElement.html()).toContain('8.5')
     expect(movieItem.html()).toContain('Project Power')
-
     expect(imgElement.attributes('src')).toContain(
       'fjCezXiQWfGuNf4t7LruKky7kwV.jpg'
     )

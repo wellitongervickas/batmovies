@@ -1,4 +1,4 @@
-export const message = 'Must  be greater than'
+export const message = 'Must be greater than'
 
 const greaterThan = (value = null, options = {}) => {
   const count = options.count || 0
@@ -7,7 +7,7 @@ const greaterThan = (value = null, options = {}) => {
     return `${message} ${count}`
   }
 
-  if (value.length < count) {
+  if (String(value).length <= count) {
     return `${message} ${count}`
   }
 
