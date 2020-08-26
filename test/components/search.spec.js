@@ -2,6 +2,7 @@ import { mount, createLocalVue } from '@vue/test-utils'
 
 import SearchBar from '@/components/Search/Bar'
 import FormButton from '@/components/Form/Button'
+import FormInput from '@/components/Form/Input'
 
 // Add Library Icons
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
@@ -20,15 +21,25 @@ describe('Badgets Item', () => {
   })
 
   test('have labels with props', () => {
+    const label = 'Search'
+    const placeholder = 'Search a movie'
+
     const wrapper = mount(SearchBar, {
       propsData: {
-        title: 'Search',
-        placeholder: 'Search a movie',
+        title: label,
+        placeholder,
       },
     })
 
-    expect(wrapper.props().title).toBe('Search')
-    expect(wrapper.props().placeholder).toBe('Search a movie')
+    const fieldElement = wrapper.findComponent(FormInput)
+
+    expect(fieldElement.find('label').html()).toContain(label)
+    expect(fieldElement.find('input').attributes('placeholder')).toContain(
+      placeholder
+    )
+
+    expect(wrapper.props().title).toBe(label)
+    expect(wrapper.props().placeholder).toBe(placeholder)
   })
 
   test('have text on input', () => {

@@ -1,9 +1,9 @@
 <template>
-  <movies-container v-if="movies.length">
+  <div v-if="movies.length" class="movies-list-container">
     <movies-item v-for="movie in movies" :key="movie.id" :movie="movie" />
-  </movies-container>
+  </div>
   <div v-else-if="loading">
-    <spinner />
+    <spinner text="loading..." />
   </div>
   <div v-else>
     No movies to show yet!
@@ -14,13 +14,11 @@
 import Spinner from '@/components/Loadings/Spinner'
 
 import MoviesItem from './Item'
-import * as styles from './styles'
 
 export default {
   name: 'MoviesList',
   components: {
     Spinner,
-    MoviesContainer: styles.moviesContainer,
     MoviesItem,
   },
   props: {
@@ -35,3 +33,27 @@ export default {
   },
 }
 </script>
+
+<style lang="scss" scoped>
+@import '~/assets/scss/_variables';
+
+.movies-list-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 1.6rem;
+  margin-bottom: 2rem;
+  cursor: pointer;
+  margin: 0 auto;
+
+  @media screen and (max-width: $breakPointMobile) {
+    grid-template-columns: 1fr;
+    max-width: 225px;
+    text-align: center;
+  }
+
+  @media (min-width: $breakPointMobile) and (max-width: $breakpointTablet) {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 620px;
+  }
+}
+</style>

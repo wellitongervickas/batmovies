@@ -1,15 +1,15 @@
 <template>
   <div>
     <div>
-      <search-container>
+      <div class="search-container">
         <search-bar
           title="Search"
           placeholder="Search a movie, tv show or whatever"
           @submit="onSubmitQuery"
         />
-      </search-container>
+      </div>
       <sub-heading icon="list-ul">Results</sub-heading>
-      <movies-list :movies="movies" :loading="loading" />
+      <movies-list :movies="results" :loading="loading" />
     </div>
   </div>
 </template>
@@ -19,8 +19,6 @@ import SearchBar from '@/components/Search/Bar'
 import MoviesList from '@/components/Movies/List'
 import SubHeading from '@/components/Typography/SubHeading'
 
-import * as styles from './styles/search'
-
 export default {
   middleware: 'auth',
   layout: 'dashboard',
@@ -29,32 +27,39 @@ export default {
     MoviesList,
     SubHeading,
     SearchBar,
-
-    SearchContainer: styles.searchContainer,
   },
-  computed: {
-    movies() {
-      return this.$store.state.searchMovies.items.results || []
-    },
-    loading() {
-      return this.$store.state.searchMovies.items.loading
-    },
-  },
-  beforeMount() {
-    this.$store.commit('searchMovies/clear')
+  data() {
+    return {
+      results: [],
+      loading: false,
+    }
   },
   methods: {
     onSubmitQuery(value) {
+      this.loading = true
       this.searchMovies(value)
     },
 
     searchMovies(query) {
-      this.$store.dispatch('searchMovies/items', {
-        params: {
-          query,
-        },
-      })
+      this.$api
+        .$get('search/movie', {
+          params: {
+            query,
+          },
+        })
+        .then(({ results }) => {
+          this.results = results
+        })
+        .finally(() => {
+          this.loading = false
+        })
     },
   },
 }
 </script>
+
+<style lang="scss" scoped>
+.search-container {
+  margin-bottom: 1rem;
+}
+</style>

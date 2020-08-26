@@ -76,17 +76,6 @@ export default {
         ],
       },
     ],
-    [
-      '@nuxtjs/google-fonts',
-      {
-        preconnect: true,
-        prefetch: true,
-        families: {
-          Roboto: [400, 700],
-          Rajdhani: [400, 700],
-        },
-      },
-    ],
   ],
   /*
    ** Nuxt.js modules
@@ -119,5 +108,7 @@ export default {
    ** Build configuration
    ** See https://nuxtjs.org/api/configuration-build/
    */
-  build: {},
+  build: {
+    cache: true,
+  },
 }

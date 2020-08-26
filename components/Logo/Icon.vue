@@ -1,24 +1,19 @@
 <template>
-  <icon>
+  <div>
     <img src="~assets/mdi_bat.png" alt="bat" :width="width" :height="height" />
-  </icon>
+  </div>
 </template>
 
 <script>
-import * as styles from './styles'
-
 export default {
   name: 'LogoIcon',
-  components: {
-    Icon: styles.icon,
-  },
   props: {
     width: {
-      type: [Number, String],
+      type: String,
       default: 'auto',
     },
     height: {
-      type: [Number, String],
+      type: String,
       default: 'auto',
     },
   },

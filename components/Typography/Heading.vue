@@ -1,21 +1,19 @@
 <template>
-  <heading>
+  <h1 class="typepography-heading">
     <font-awesome-icon v-if="icon" :icon="icon" />
     <span>
       <slot />
     </span>
-  </heading>
+  </h1>
 </template>
 
 <script>
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import * as styles from './styles'
 
 export default {
   name: 'TypographyHeading',
   components: {
     FontAwesomeIcon,
-    Heading: styles.headingContainer,
   },
   props: {
     icon: {
@@ -25,3 +23,9 @@ export default {
   },
 }
 </script>
+
+<style lang="scss" scoped>
+h1.typepography-heading {
+  margin-bottom: 1rem;
+}
+</style>

@@ -1,8 +1,8 @@
 <template>
-  <field-container>
+  <div class="form-input-container">
     <label :for="field.id">
       {{ field.label }}
-      <span v-if="isRequired(field)">*</span>
+      <span v-if="required(field)">*</span>
     </label>
     <input
       :id="field.id"
@@ -10,30 +10,26 @@
       :name="field.id"
       :placeholder="field.placeholder"
       :type="field.type"
-      @input="input"
-      @change="change"
-      @blur="change"
+      @input="onInput"
+      @blur="onBlur"
     />
-    <field-error v-if="error">
+    <div v-if="error" class="form-input-error">
       {{ error }}
-    </field-error>
-  </field-container>
+    </div>
+  </div>
 </template>
 
 <script>
 import validators from '@/helpers/validators'
-import * as styles from './styles'
-
 export default {
   name: 'FormInput',
-  components: {
-    FieldContainer: styles.fieldContainer,
-    FieldError: styles.errorContainer,
-  },
   props: {
     field: {
       type: Object,
-      default: () => {},
+      default: () => ({
+        id: 'field',
+        type: 'text',
+      }),
     },
   },
   data() {
@@ -43,35 +39,88 @@ export default {
     }
   },
   methods: {
-    isRequired(field) {
+    required(field) {
       return (
         field.validations &&
         field.validations.find((validation) => validation.type === 'blank')
       )
     },
 
-    validate() {
-      const { validations } = this.field
-      this.error = null
+    onError(error) {
+      this.error = error
+      this.$emit('error', error)
+    },
 
-      if (validations && validations.length) {
-        this.error = validations.reduce((text, validation) => {
-          text = validators[validation.type](this.value, validation)
-          return text
-        }, null)
+    onValidate(value) {
+      const { field } = this
+
+      if (field.validations && field.validations) {
+        const error = field.validations.find((validation) =>
+          validators[validation.type].validate(value, validation)
+        )
+
+        this.onError(error && validators[error.type].message(value, error))
+
+        return error
       }
 
-      return !!this.error
+      return null
     },
 
-    change() {
-      this.error = null
-      this.$emit('change', this.value)
+    onBlur({ target }) {
+      this.onValidate(target.value)
+      this.$emit('change', target.value)
     },
 
-    input() {
-      this.$emit('input', this.value)
+    onInput({ target }) {
+      this.$emit('input', target.value)
     },
   },
 }
 </script>
+
+<style lang="scss" scoped>
+@import '~/assets/scss/_variables';
+
+.form-input-container {
+  display: flex;
+  flex-direction: column;
+
+  label {
+    color: $secondary;
+    display: block;
+    margin-bottom: 0.3rem;
+
+    span {
+      color: $red;
+    }
+  }
+
+  input {
+    appearance: none;
+    min-width: 0;
+    max-width: 100%;
+    color: $secondary;
+    outline: none;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 0.6rem;
+    border: 2px solid $primary;
+    line-height: $lineHeight * 2;
+    padding: 0 0.6rem;
+
+    transition: 0.5s;
+  }
+
+  input:focus {
+    box-shadow: 0 0 0.6rem $primary;
+  }
+}
+.form-input-error {
+  background-color: $primary;
+  color: $secondary;
+  opacity: 0.7;
+  padding: 0.4rem 0.6rem;
+  border-radius: 0.6rem;
+  margin-top: 1rem;
+}
+</style>

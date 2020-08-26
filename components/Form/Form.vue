@@ -1,13 +1,16 @@
 <template>
   <div>
-    <form-fields v-for="field in section" :key="field.id">
-      <component :is="type(field.type)" ref="field" :field="field" />
-    </form-fields>
-    <form-buttons>
+    <div v-for="field in section" :key="field.id" class="form-fields">
+      <form-input ref="field" :field="field" />
+    </div>
+    <div v-if="error" class="form-error">
+      {{ error }}
+    </div>
+    <div class="form-buttons">
       <form-button :icon="button.icon" :disabled="loading" @click="onSubmit">
         {{ button.label }}
       </form-button>
-    </form-buttons>
+    </div>
   </div>
 </template>
 
@@ -15,18 +18,17 @@
 import FormInput from '@/components/Form/Input'
 import FormButton from '@/components/Form/Button'
 
-import * as styles from './styles'
-
 export default {
   name: 'Form',
   components: {
     FormInput,
     FormButton,
-
-    FormFields: styles.fields,
-    FormButtons: styles.buttons,
   },
   props: {
+    error: {
+      type: String,
+      default: null,
+    },
     loading: {
       type: Boolean,
       default: false,
@@ -44,28 +46,18 @@ export default {
     },
   },
   methods: {
-    type(type) {
-      if (['password', 'text', 'email'].includes(type)) {
-        return 'form-input'
-      }
-
-      return 'span'
-    },
-
     onSubmit() {
       let map = {}
-      let error = true
+      const fields = this.$refs.field || []
 
-      this.$refs.field.forEach((item) => {
-        error = item.validate()
-
+      fields.forEach((item) => {
         map = {
           ...map,
           [item.field.id]: item.value,
         }
       })
 
-      if (!error) {
+      if (!fields.filter((field) => field.onValidate(field.value)).length) {
         this.submit(map)
       }
     },
@@ -76,3 +68,21 @@ export default {
   },
 }
 </script>
+
+<style lang="scss" scoped>
+.form-buttons {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.form-fields {
+  margin-bottom: 1rem;
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+}
+</style>
