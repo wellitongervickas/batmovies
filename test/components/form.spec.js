@@ -5,18 +5,106 @@ import {
   RouterLinkStub,
 } from '@vue/test-utils'
 
+import Form from '@/components/Form/Form'
 import FormButton from '@/components/Form/Button'
 import FormInput from '@/components/Form/Input'
 
 // Add Library Icons
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faPlus } from '@fortawesome/free-solid-svg-icons'
+import { faPlus, faArrowRight } from '@fortawesome/free-solid-svg-icons'
+
 library.add(faPlus)
+library.add(faArrowRight)
 
 const localVue = createLocalVue()
 
 localVue.component('font-awesome-icon', FontAwesomeIcon)
+
+describe('Form', () => {
+  test('is a Vue instance', () => {
+    const wrapper = mount(Form)
+    expect(wrapper.vm).toBeTruthy()
+  })
+
+  test('should submit without fields', async () => {
+    const wrapper = mount(Form)
+
+    const buttonElement = wrapper.find('button')
+    buttonElement.trigger('click')
+
+    await wrapper.vm.$nextTick()
+
+    expect(wrapper.emitted('submit')).toBeTruthy()
+  })
+
+  test('should create a form with fields and submit values', async () => {
+    const section = [
+      {
+        id: 'name',
+        label: 'Name',
+        type: 'text',
+      },
+      {
+        id: 'last_name',
+        label: 'Last name',
+        type: 'text',
+      },
+    ]
+
+    const wrapper = mount(Form, {
+      propsData: {
+        section,
+      },
+    })
+
+    const nameField = wrapper.find('#name')
+    const lastNameField = wrapper.find('#last_name')
+    nameField.setValue('welliton')
+    lastNameField.setValue('gervickas')
+
+    const buttonElement = wrapper.find('button')
+    buttonElement.trigger('click')
+
+    await wrapper.vm.$nextTick()
+
+    expect(wrapper.emitted('submit')).toBeTruthy()
+    expect(wrapper.emitted('submit')[0]).toEqual([
+      {
+        name: 'welliton',
+        last_name: 'gervickas',
+      },
+    ])
+  })
+
+  test('should create a form with empty and dont submit while have an error', async () => {
+    const section = [
+      {
+        id: 'empty',
+        label: 'Empty',
+        type: 'text',
+        validations: [
+          {
+            type: 'blank',
+          },
+        ],
+      },
+    ]
+
+    const wrapper = mount(Form, {
+      propsData: {
+        section,
+      },
+    })
+
+    const buttonElement = wrapper.find('button')
+    buttonElement.trigger('click')
+
+    await wrapper.vm.$nextTick()
+
+    expect(wrapper.emitted('submit')).toBeFalsy()
+  })
+})
 
 describe('Form Button', () => {
   test('is a Vue instance', () => {

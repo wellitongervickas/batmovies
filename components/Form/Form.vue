@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-for="field in section" :key="field.id" class="form-fields">
-      <component :is="type(field.type)" ref="field" :field="field" />
+      <form-input ref="field" :field="field" />
     </div>
     <div v-if="error" class="form-error">
       {{ error }}
@@ -46,28 +46,18 @@ export default {
     },
   },
   methods: {
-    type(type) {
-      if (['password', 'text', 'email'].includes(type)) {
-        return 'form-input'
-      }
-
-      return 'span'
-    },
-
     onSubmit() {
       let map = {}
+      const fields = this.$refs.field || []
 
-      this.$refs.field.forEach((item) => {
+      fields.forEach((item) => {
         map = {
           ...map,
           [item.field.id]: item.value,
         }
       })
 
-      if (
-        !this.$refs.field.filter((field) => field.onValidate(field.value))
-          .length
-      ) {
+      if (!fields.filter((field) => field.onValidate(field.value)).length) {
         this.submit(map)
       }
     },
