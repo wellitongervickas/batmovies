@@ -2,7 +2,7 @@
   <div class="form-input-container">
     <label :for="field.id">
       {{ field.label }}
-      <span v-if="required">*</span>
+      <span v-if="required(field)">*</span>
     </label>
     <input
       :id="field.id"
@@ -26,7 +26,10 @@ export default {
   props: {
     field: {
       type: Object,
-      default: () => {},
+      default: () => ({
+        id: 'field',
+        type: 'text',
+      }),
     },
   },
   data() {
@@ -36,9 +39,7 @@ export default {
     }
   },
   methods: {
-    required() {
-      const { field } = this
-
+    required(field) {
       return (
         field.validations &&
         field.validations.find((validation) => validation.type === 'blank')

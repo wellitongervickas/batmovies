@@ -1,12 +1,6 @@
 <template>
   <div class="form-button-container">
-    <component
-      :is="is"
-      v-bind="options"
-      :type="type"
-      :disabled="disabled"
-      @click="onClick"
-    >
+    <component :is="is" v-bind="options" @click="onClick">
       <slot />
       <font-awesome-icon v-if="icon" :icon="icon" />
     </component>
@@ -45,8 +39,15 @@ export default {
   },
   computed: {
     options() {
+      if (this.asLink) {
+        return {
+          to: this.to,
+        }
+      }
+
       return {
-        to: this.asLink ? this.to : null,
+        type: this.type,
+        disabled: this.disabled,
       }
     },
     is() {

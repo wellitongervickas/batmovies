@@ -1,9 +1,4 @@
-import {
-  mount,
-  shallowMount,
-  createLocalVue,
-  RouterLinkStub,
-} from '@vue/test-utils'
+import { mount, createLocalVue, RouterLinkStub } from '@vue/test-utils'
 
 import Sidebar from '@/components/Nav/Sidebar'
 
