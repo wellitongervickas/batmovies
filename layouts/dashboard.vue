@@ -10,7 +10,7 @@
   </layout-container>
 </template>
 <script>
-import NavSidebar from '@/components/Nav/Sidebar/Index'
+import NavSidebar from '@/components/Nav/Sidebar'
 import LayoutContainer from '@/components/Layout/Container'
 
 import '~/assets/scss/app.scss'

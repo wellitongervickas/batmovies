@@ -40,9 +40,6 @@ export default {
   },
   mixins: [authenticated],
   computed: {
-    id() {
-      return this.$auth.user.id
-    },
     favoriteRoute() {
       return `/account/${this.$auth.user.id}`
     },

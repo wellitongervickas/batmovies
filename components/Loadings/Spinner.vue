@@ -1,15 +1,29 @@
 <template>
-  <div class="spinner-container" />
+  <div>
+    <div class="spinner-container" />
+    <div v-if="text" class="spinner-text">{{ text }}</div>
+  </div>
 </template>
 
 <script>
 export default {
   name: 'LoadingsSpinner',
+  props: {
+    text: {
+      type: String,
+      default: null,
+    },
+  },
 }
 </script>
 
 <style lang="scss" scoped>
 @import '~/assets/scss/_variables';
+
+.spinner-text {
+  margin-top: 1rem;
+  text-align: center;
+}
 
 .spinner-container {
   margin: 0 auto;

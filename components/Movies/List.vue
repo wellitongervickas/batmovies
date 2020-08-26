@@ -3,7 +3,7 @@
     <movies-item v-for="movie in movies" :key="movie.id" :movie="movie" />
   </div>
   <div v-else-if="loading">
-    <spinner />
+    <spinner text="loading..." />
   </div>
   <div v-else>
     No movies to show yet!
