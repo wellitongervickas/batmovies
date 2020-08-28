@@ -50,6 +50,7 @@ export default {
       let map = {}
       const fields = this.$refs.field || []
 
+      // const map = fields.keys(key => ())
       fields.forEach((item) => {
         map = {
           ...map,

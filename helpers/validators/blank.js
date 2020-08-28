@@ -1,14 +1,12 @@
-export const message = 'Is required'
+const blank = {
+  message: () => 'Is required',
+  validate: (value = null) => {
+    if ([null, undefined, ''].includes(value)) {
+      return blank.message()
+    }
 
-const blank = (value = null) => {
-  if ([null, undefined, ''].includes(value)) {
-    return message
-  }
-
-  return null
+    return null
+  },
 }
 
-export default {
-  validate: blank,
-  message: () => message,
-}
+export default blank
